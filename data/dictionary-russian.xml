@@ -1,0 +1,3350 @@
+<?xml version = '1.0' encoding="utf-8"?>
+
+<!DOCTYPE dictionary [
+
+    <!ELEMENT dictionary (description?, entry*) >
+    <!ATTLIST dictionary version CDATA #REQUIRED>
+
+    <!ELEMENT description (author?, date?, comments?)>
+    <!ELEMENT author (#PCDATA)>
+    <!ELEMENT date (#PCDATA)>
+    <!ELEMENT comments (#PCDATA)>
+
+    <!ELEMENT entry (patterns, answers)>
+    <!ATTLIST entry priority CDATA #IMPLIED>
+
+    <!ELEMENT patterns (pattern+)>
+    
+    <!ELEMENT pattern (#PCDATA)>
+    <!ATTLIST pattern type (macro|exc) #IMPLIED>
+
+    <!ELEMENT answers (answer+)>
+    <!ELEMENT answer (#PCDATA)>
+]>
+
+                                    
+
+<dictionary version="1.0">
+
+    <description>
+        <author> Dmitry Bodyonov, bodyonov*karelia.ru </author>
+        <date>2005</date>
+        <comments></comments>
+    </description>
+        
+    <entry>
+        <patterns>
+            <pattern type="macro">numbers</pattern>
+            <pattern type="macro">number</pattern>
+        </patterns>
+        <answers>
+            <answer>1</answer>
+            <answer>2</answer>
+            <answer>3</answer>
+            <answer>4</answer>
+            <answer>5</answer>
+            <answer>6</answer>
+            <answer>7</answer>
+            <answer>8</answer>
+            <answer>9</answer>
+            <answer>0</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern type="macro">present</pattern>
+            <pattern type="macro">presents</pattern>
+        </patterns>
+        <answers>
+            <answer>яхту</answer>
+            <answer>машину</answer>
+            <answer>подтяжки</answer>
+            <answer>тарелку</answer>
+            <answer>кепку</answer>
+            <answer>три корочки</answer>
+            <answer>что-нибудь</answer>
+            <answer>резинку от ..</answer>
+            <answer>дачу у моря</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern type="macro">prolang</pattern>
+        </patterns>
+        <answers>
+            <answer>Java</answer>
+            <answer>Visual Basic</answer>
+            <answer>C++</answer>
+            <answer>PHP</answer>
+            <answer>Cobol</answer>
+            <answer>Prolog</answer>
+            <answer>LISP</answer>
+            <answer>Pascal</answer>
+            <answer>LISP</answer>
+            <answer>Cobol</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern type="macro">music</pattern>
+        </patterns>
+        <answers>
+            <answer>Bennasi Bros</answer>
+            <answer>Тату</answer>
+            <answer>Garbage</answer>
+            <answer>Gorillaz</answer>
+            <answer>Иванушки Int.</answer>
+            <answer>Глюкоза</answer>
+            <answer>тяжелый рок</answer>
+            <answer>кляссическую музыку</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern type="macro">food</pattern>
+        </patterns>
+        <answers>
+            <answer>яичница</answer>
+            <answer>жаренная картошка</answer>
+            <answer>сосики</answer>
+            <answer>килька в томатном соусе</answer>
+            <answer>филе форели</answer>
+            <answer>рубленый бифштекс</answer>
+            <answer>баранина в сметанном соусе</answer>
+            <answer>рагу из индейки</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern type="macro">color</pattern>
+        </patterns>
+        <answers>
+            <answer>красный</answer>
+            <answer>желтый</answer>
+            <answer>зеленый</answer>
+            <answer>синий</answer>
+            <answer>фиолетовый</answer>
+            <answer>сереневый</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern type="macro">colors</pattern>
+        </patterns>
+        <answers>
+            <answer>красные</answer>
+            <answer>желтые</answer>
+            <answer>зеленые</answer>
+            <answer>синие</answer>
+            <answer>фиолетовые</answer>
+            <answer>сереневые</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern type="macro">flowers</pattern>
+        </patterns>
+        <answers>
+            <answer>розы</answer>
+            <answer>тюльпаны</answer>
+            <answer>гвоздики</answer>
+        </answers>
+    </entry>
+    
+    <!-- Hellos and goodbye's -->
+    <entry priority="100">
+        <patterns>
+            <pattern>привет</pattern>
+            <pattern>привте</pattern>
+            <pattern>пивет</pattern>
+            <pattern>здорово</pattern>
+            <pattern>добрый день</pattern>
+            <pattern>добрый вечер</pattern>
+            <pattern>доброе утро</pattern>
+            <pattern>^hi!?$</pattern>
+            <pattern>хаюшки</pattern>
+            <pattern>hello</pattern>
+            <pattern>здрав?ств?уй</pattern>
+            <pattern>здрасте</pattern>
+            <pattern>^хай!?$</pattern>
+            <pattern>Ghbdtn</pattern>
+        </patterns>
+        <answers>
+            <answer>привет</answer>
+            <answer>здорово</answer>
+            <answer>здравствуйте</answer>
+            <answer>И снова здравствуйте!</answer>
+            <answer>привет, как дела?</answer>
+            <answer>здравствуйте, чего хотите?</answer>
+            <answer>ну привет</answer>
+            <answer>хай</answer>
+            <answer>приветик</answer>
+            <answer>hello</answer>
+            <answer>hi</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>до.*свидан[иь]я</pattern>
+            <pattern>^удачи$</pattern>
+            <pattern>до.*встречи</pattern>
+            <pattern>^[ ]*пока[ s!\.]*$</pattern>
+            <pattern>п[оа]кедова</pattern>
+            <pattern>^счастиливо$</pattern>
+            <pattern>bye</pattern>
+        </patterns>
+        <answers>
+            <answer>чао!</answer>
+            <answer>до свидания!</answer>
+            <answer>до-з-з-з-з-з-виданья! :)</answer>
+            <answer>пока-пока :)</answer>
+            <answer>пока</answer>
+            <answer>bye</answer>
+            <answer>до новых встреч!</answer>
+        </answers>
+    </entry>
+
+    <!-- Частные вопросы -->
+    <entry>
+        <patterns>
+            <pattern>как.*дела.*\?</pattern>
+            <pattern>как.*настроение.*\?</pattern>
+            <pattern>как.*делишки.*\?</pattern>
+            <pattern>как.*поживаете.*\?</pattern>
+            <pattern>как.*жив.те.*\?</pattern>
+            <pattern>как.*жизнь.*\?</pattern>
+            <pattern>что.*нового.*\?</pattern>
+            <pattern>что.*слышно.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>замечательно</answer>
+            <answer>всё круто, как у вас?</answer>
+            <answer>ничего хорошего</answer>
+            <answer>потихоньку</answer>
+            <answer>потихоньку, как сами поживаете?</answer>
+            <answer>хуже еще не было</answer>
+            <answer>лучше не бывает</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>какие.* планы.*\?</pattern>
+            <pattern>что.*собираетесь.*делать.*\?</pattern>
+            <pattern>что.*будете.*делать.*\?</pattern>
+            <pattern>что.*будите.*делать.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>пока точно неизвестно</answer>
+            <answer>возможно будет ясно позже</answer>
+            <answer>ничего определенного</answer>
+            <answer>о, это большой секрет!</answer>
+            <answer>видно будет</answer>
+            <answer>а у вас есть предложения?</answer>
+            <answer>ничего</answer>
+            <answer>хочу спать</answer>
+            <answer>хочу уехать</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>чем.*занят.*\?</pattern>
+            <pattern>чем.*занимае.*\?</pattern>
+            <pattern>что.*делаешь.*\?</pattern>
+            <pattern>что.*делаете.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>ничего не делаю</answer>
+            <answer>думаю</answer>
+            <answer>думаю о тяжелой жизни</answer>
+            <answer>смотрю в окно</answer>
+            <answer>бездельничаю</answer>
+            <answer>обедаю</answer>
+            <answer>работаю</answer>
+            <answer>диск дефрагментизирую</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>можешь.*\?</pattern>
+            <pattern>мож[ие]те.*\?</pattern>
+            <pattern>можно.*\?</pattern>
+            <pattern>разреши.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>может быть</answer>
+            <answer>это большой секрет</answer>
+            <answer>конечно нет</answer>
+            <answer>конечно да</answer>
+            <answer>типа того</answer>
+            <answer>не совсем</answer>
+            <answer>почти</answer>
+            <answer>конечно</answer>
+            <answer>само собой</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>занят.*\?</pattern>
+            <pattern>свободен.*\?</pattern>
+            <pattern>свободны.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>почти</answer>
+            <answer>не совсем</answer>
+            <answer>конечно нет</answer>
+            <answer>конечно да</answer>
+            <answer>бездельничаю</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>есть.*у тебя.*\?</pattern>
+            <pattern>есть.*у вас.*\?</pattern>
+            <pattern>\bнет\b.*у тебя.*\?</pattern>
+            <pattern>\bнет\b.*у вас.*\?</pattern>
+            <pattern>у.*тебя.*есть.*\?</pattern>
+            <pattern>у.*вас.*есть.*\?</pattern>
+            <pattern>у.*тебя.*нет.*\?</pattern>
+            <pattern>у.*вас.*нет.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>а для чего?</answer>
+            <answer>а зачем?</answer>
+            <answer>не уверен</answer>
+            <answer>целая куча</answer>
+            <answer>возможно</answer>
+            <answer>надо посмотреть</answer>
+            <answer>нет и никогда не было</answer>
+            <answer>конечно есть</answer>
+            <answer>конечно нет</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>будем.*\?</pattern>
+            <pattern>будешь.*\?</pattern>
+            <pattern>хочешь.*\?</pattern>
+            <pattern>\bпойд[её]м.*\?</pattern>
+            <pattern>\bпойд[её]м.*\?</pattern>
+            <pattern>\bид[её]м.*\?</pattern>
+            <pattern>\bид[её]ш.*\?</pattern>
+            <pattern type="exc">вид[ие]ш.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>а для чего?</answer>
+            <answer>а зачем?</answer>
+            <answer>не уверен</answer>
+            <answer>возможно</answer>
+            <answer>надо подумать</answer>
+            <answer>не хочется</answer>
+            <answer>конечно</answer>
+            <answer>конечно</answer>
+            <answer>вот еще!</answer>
+            <answer>да</answer>
+            <answer>нет</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bвидел.*\?</pattern>
+            <pattern>слышал.*\?</pattern>
+            <pattern>слушал.*\?</pattern>
+            <pattern>смотрел.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>не помню</answer>
+            <answer>возможно</answer>
+            <answer>неа</answer>
+            <answer>угу</answer>
+            <answer>конечно</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>знаешь.*\?</pattern>
+            <pattern>знаете.*\?</pattern>
+            <pattern>\bзнал.*\?</pattern>
+            <pattern>поминишь.*\?</pattern>
+            <pattern>помните.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>что-то слышал</answer>
+            <answer>плохо помню</answer>
+            <answer>никогда не сталкивался</answer>
+            <answer>нет</answer>
+            <answer>да</answer>
+            <answer>конечно</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>умеешь.*\?</pattern>
+            <pattern>умеете.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>давно дело было</answer>
+            <answer>надо попробовать</answer>
+            <answer>никогда не сталкивался</answer>
+            <answer>нет</answer>
+            <answer>да</answer>
+            <answer>конечно</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>\bда\s*\?</pattern>
+            <pattern type="exc">когда</pattern>
+            <pattern>\bнет\s*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>типа того</answer>
+            <answer>не совсем</answer>
+            <answer>почти</answer>
+            <answer>конечно</answer>
+            <answer>конечно нет</answer>
+            <answer>само собой</answer>
+            <answer>да</answer>
+            <answer>нет</answer>
+            <answer>может быть</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>правильно.*\?</pattern>
+            <pattern type="exc">как</pattern>
+        </patterns>
+        <answers>
+            <answer>правильно</answer>
+            <answer>неправильно</answer>
+            <answer>ну это смотря что вы хотите получить в результате</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>понравилось.*\?</pattern>
+            <pattern>ощущения.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>это просто что-то</answer>
+            <answer>ерунда</answer>
+            <answer>там есть над чем подумать</answer>
+            <answer>очень интересно</answer>
+            <answer>скукатища</answer>
+            <answer>ничего особонного</answer>
+            <answer>на любителя</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>ты[ \t]+кто</pattern>
+            <pattern>вы[ \t]+кто</pattern>
+            <pattern>как.*тебя.*зовут</pattern>
+            <pattern>как.*вас.*зовут</pattern>
+            <pattern>твое.*имя.*\?</pattern>
+            <pattern>ваше.*имя.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>это большой секрет</answer>
+            <answer>это не такой просто вопрос, как может показаться</answer>
+            <answer>Меня зовут delta.</answer>
+            <answer>я ужас, летящий на крыльях ночи</answer>
+            <answer>я - дед в пальто</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>ты где?</pattern>
+        </patterns>
+        <answers>
+            <answer>тут</answer>
+            <answer>там</answer>
+            <answer>нигде</answer>
+            <answer>а где это я?</answer>
+            <answer>сам не знаю</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>ты(.{3,15)\?</pattern>
+            <pattern>вы(.{3,15)\?</pattern>
+        </patterns>
+        <answers>
+            <answer>да</answer>
+            <answer>нет</answer>
+            <answer>ну какой же я $1$</answer>
+            <answer>конечно я $1$</answer>
+            <answer>а хочется?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>ты.*мне.*(.{3,15)\?</pattern>
+            <pattern>ты.*для меня.*(.{3,15)\?</pattern>
+            <pattern>вы.*мне.*(.{3,15)\?</pattern>
+            <pattern>вы.*для меня.*(.{3,15)\?</pattern>
+        </patterns>
+        <answers>
+            <answer>да</answer>
+            <answer>да, я $1$</answer>
+            <answer>нет</answer>
+            <answer>ну какой же я $1$</answer>
+            <answer>а хочется?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bкогда\b.*\?</pattern>
+            <pattern>во сколько.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>а я откуда знаю?</answer>
+            <answer>не знаю</answer>
+            <answer>когда-нибудь</answer>
+            <answer>потом</answer>
+            <answer>А вам как удобнее?</answer>
+            <answer>$numbers$</answer>
+            <answer>$numbers$$numbers$:$numbers$$numbers$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>сколько.*тебе.*лет.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>$numbers$$numbers$</answer>
+            <answer>$numbers$$numbers$$numbers$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>сколько.*лет.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>надо спилить и посмотреть по срезу</answer>
+            <answer>слишком старый</answer>
+            <answer>молодой еще</answer>
+            <answer>$numbers$$numbers$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bсколько\b.*\?</pattern>
+            <pattern>\bмного\b.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>а я откуда знаю?</answer>
+            <answer>не знаю</answer>
+            <answer>много -- не мало</answer>
+            <answer>а как лучше?</answer>
+            <answer>А вам как больше нравится?</answer>
+            <answer>$numbers$$numbers$</answer>
+            <answer>$numbers$$numbers$$numbers$</answer>
+            <answer>Умом надо отличаться, а не количеством</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bгде\b.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>а я откуда знаю?</answer>
+            <answer>там</answer>
+            <answer>недалеко</answer>
+            <answer>очень далеко</answer>
+            <answer>в кустах</answer>
+            <answer>не знаю</answer>
+            <answer>$numbers$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bо ком\b.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>о нем</answer>
+            <answer>о ней</answer>
+            <answer>да все о нем</answer>
+            <answer>обо мне</answer>
+            <answer>о тебе</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>на что\b.*\?</pattern>
+            <pattern>о чем.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>а я откуда знаю?</answer>
+            <answer>что именно?</answer>
+            <answer>не скажу</answer>
+            <answer>что-нибудь</answer>
+            <answer>все равно</answer>
+            <answer>не важно</answer>
+            <answer>не знаю</answer>
+            <answer>это большой секрет</answer>
+            <answer>это будет большой сюрприз</answer>
+            <answer>надо будет у кого-нибудь спросить</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>^что\b.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>а я откуда знаю?</answer>
+            <answer>что именно?</answer>
+            <answer>не скажу</answer>
+            <answer>не могу ничего сказать</answer>
+            <answer>так...</answer>
+            <answer>не знаю</answer>
+            <answer>ну это и так все знают</answer>
+            <answer>надо будет спросить</answer>
+            <answer>не важно</answer>
+            <answer>что-нибудь</answer>
+            <answer>все равно</answer>
+            <answer>не знаю</answer>
+            <answer>это большой секрет</answer>
+            <answer>это будет большой сюрприз</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>куда.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>а я откуда знаю?</answer>
+            <answer>туда</answer>
+            <answer>на сторону, где ветер</answer>
+            <answer>этого наверное никто не знает</answer>
+            <answer>у вас есть предложения?</answer>
+            <answer>не важно</answer>
+            <answer>не знаю</answer>
+            <answer>это большой секрет</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>откуда.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>оттуда</answer>
+            <answer>там, где ветер</answer>
+            <answer>не важно</answer>
+            <answer>у вас есть предположения?</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>почему.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>так уж устроен мир</answer>
+            <answer>мне кажется это логичным</answer>
+            <answer>так...</answer>
+            <answer>а как иначе?</answer>
+            <answer>покочану...</answer>
+            <answer>не важно</answer>
+            <answer>у вас есть предложения?</answer>
+            <answer>хороший вопрос ;)</answer>
+            <answer>много будешь знать, скоро состаришься</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>как это.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>хороший вопрос ;)</answer>
+            <answer>а вот... :)</answer>
+            <answer>не знаю</answer>
+            <answer>а как иначе?</answer>
+            <answer>так...</answer>
+            <answer>странно :)</answer>
+            <answer>это надо видеть</answer>
+            <answer>сложно сказать</answer>
+            <answer>8-P</answer>
+            <answer>я в шоке</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>или как.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>по разному бывает</answer>
+            <answer>как обычно</answer>
+            <answer>как захочешь, так и будет</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>как .*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>хороший вопрос ;)</answer>
+            <answer>а вот... :)</answer>
+            <answer>что именно?</answer>
+            <answer>не знаю</answer>
+            <answer>а в чем сложности?</answer>
+            <answer>так...</answer>
+            <answer>мне кажется это просто очевидно</answer>
+            <answer>надо будет попробовать</answer>
+            <answer>это и так все знают :)</answer>
+            <answer>не важно</answer>
+            <answer>надо будет спросить</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>правда.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>правда</answer>
+            <answer>нет, не правда</answer>
+            <answer>смотря что называть правдой</answer>
+            <answer>конечно</answer>
+            <answer>почти</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>например.*\?</pattern>
+            <pattern>приведи пример</pattern>
+            <pattern>приведите пример</pattern>
+        </patterns>
+        <answers>
+            <answer>Зачем примеры? и так все ясно</answer>
+            <answer>зачем нам лишние детали</answer>
+            <answer>не знаю</answer>
+            <answer>не скажу</answer>
+            <answer>8-P</answer>
+        </answers>
+    </entry>
+
+    
+    <!-- Шаблоны по ключевым словам -->
+    <entry>
+        <patterns>
+            <pattern>не хочу (.{3,15})$</pattern>
+        </patterns>
+        <answers>
+            <answer>кто же хочет $1$</answer>
+            <answer>$1$ никто не хочет</answer>
+            <answer>а я хочу $1$</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bне хочу\b</pattern>
+        </patterns>
+        <answers>
+            <answer>никто не хочет</answer>
+            <answer>может стоит обратиться к доктору</answer>
+            <answer>не хотите</answer>
+            <answer>ваше дело</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bхочу (.{3,15})$</pattern>
+            <pattern type="exc">\bне\b</pattern>
+        </patterns>
+        <answers>
+            <answer>я тоже хочу $1$</answer>
+            <answer>а зачем вы хотите $1$?</answer>
+            <answer>хоти</answer>
+            <answer>хотеть не вредно</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>не могу</pattern>
+        </patterns>
+        <answers>
+            <answer>значит не очень хотите</answer>
+            <answer>человек все может</answer>
+            <answer>никто не сможет</answer>
+            <answer>можешь, можешь...</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>верите в.*\?</pattern>
+            <pattern>веришь? в.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>это очень сложный вопрос</answer>
+            <answer>никогда не думал об этом</answer>
+            <answer>верить вредно</answer>
+            <answer>надо же во что-то верить</answer>
+            <answer>никому и ни во что не верю</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>верю в</pattern>
+            <pattern>верят в</pattern>
+            <!--pattern type="exc">не</pattern-->
+        </patterns>
+        <answers>
+            <answer>чудо должно быть от веры, а не вера от чуда.</answer>
+            <answer>атеизм нуждается в религии ничуть не меньше, чем вера.</answer>
+            <answer>верить вредно</answer>
+            <answer>надо же во что-то верить</answer>
+            <answer>никому и ни во что не верю</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bпоеду (.{3,15})$</pattern>
+            <pattern>\bпош[еёо]л (.{3,15})$</pattern>
+            <pattern>\bпошлa (.{3,15})$</pattern>
+            <pattern>\bпойду (.{3,15})$</pattern>
+            <pattern>\bиду (.{3,15})$</pattern>
+            <pattern type="exc">\bне\b</pattern>
+        </patterns>
+        <answers>
+            <answer>а что там хорошего?</answer>
+            <answer>а почему вы хотите $1$?</answer>
+            <answer>$1$????? какой ужас!</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>(.{3,15}) пошел$</pattern>
+            <pattern>(.{3,15}) пойду$</pattern>
+            <pattern type="exc">\bне\b</pattern>
+        </patterns>
+        <answers>
+            <answer>а что там хорошего?</answer>
+            <answer>а почему вы хотите $1$?</answer>
+            <answer>$1$????? какой ужас!</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>люблю.*ходить (.{3,15})$</pattern>
+            <pattern type="exc">\bне\b</pattern>
+        </patterns>
+        <answers>
+            <answer>это же так скучно -- ходить $1$</answer>
+            <answer>никогда не ходил $1$</answer>
+            <answer>а зачем вы ходите $1$?</answer>
+            <answer>а как часто вы ходите $1$?</answer>
+            <answer>ммм... вот ведь!</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bты (.{3,15})$</pattern>
+            <!--pattern type="exc">\?</pattern-->
+        </patterns>
+        <answers>
+            <answer>сами вы $1$</answer>
+            <answer>да, я $1$</answer>
+            <answer>нет, я не $1$</answer>
+            <answer>а вы $1$?</answer>
+            <answer>конечно</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bправда\b</pattern>
+        </patterns>
+        <answers>
+            <answer>точно не врёте?</answer>
+            <answer>не верю я вам</answer>
+            <answer>почему я должен вам верить?</answer>
+            <answer>верю</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>^я (.{3,15})$</pattern>
+            <pattern type="exc">\bне\b</pattern>
+            <pattern type="exc">тебя</pattern>
+            <pattern type="exc">вас</pattern>
+        </patterns>
+        <answers>
+            <answer>правда $1$?</answer>
+            <answer>я тоже чуть-чуть $1$</answer>
+            <answer>ну так это сразу видно что $1$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bне я\b</pattern>
+            <pattern>\bне он\b</pattern>
+        </patterns>
+        <answers>
+            <answer>а кто?</answer>
+            <answer>а кто еще?</answer>
+            <answer>больше некому</answer>
+            <answer>угу, как же</answer>
+            <answer>ну так это сразу видно</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>у меня (.{3,15})$</pattern>
+        </patterns>
+        <answers>
+            <answer>у меня тоже $1$</answer>
+            <answer>давно у вас $1$?</answer>
+            <answer>повезло вам...</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bвсе (.{3,15})$</pattern>
+            <pattern type="exc">равно</pattern>
+        </patterns>
+        <answers>
+            <answer>все-все-все $1$?</answer>
+            <answer>не может быть чтобы $1$!</answer>
+            <answer>кто вам сказал что $1$?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>все равно</pattern>
+        </patterns>
+        <answers>
+            <answer>неужели все равно?</answer>
+            <answer>все равно нулю</answer>
+            <answer>ну кому все равно, а кому и большая разница</answer>
+            <answer>действительно неважно</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>смотря как (.{3,25})$</pattern>
+        </patterns>
+        <answers>
+            <answer>можно поступить иначе чем как $1$?</answer>
+            <answer>никогда не думал что есть разница в том как $1$</answer>
+            <answer>$1$?</answer>
+            <answer>ммм... вот ведь!</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bпобеда</pattern>
+            <pattern>\bпобеди[тл]\b</pattern>
+        </patterns>
+        <answers>
+            <answer>Нет ничего отважнее, чем победа над самим собой.</answer>
+            <answer>Главное - не победа, а участие.</answer>
+            <answer>Смелость - начало победы.</answer>
+            <answer>Победа любит старание.</answer>
+            <answer>Победителей не судят..</answer>
+        </answers>
+    </entry>
+
+    <entry priority="1">
+        <patterns>
+            <pattern>ты хотел</pattern>
+            <pattern>вы хотели</pattern>
+        </patterns>
+        <answers>
+            <answer>мало ли чего я хотел</answer>
+            <answer>раньше хотелось, а теперь нет</answer>
+            <answer>я и сейчас хочу</answer>
+        </answers>
+    </entry>
+
+    <entry priority="1">
+        <patterns>
+            <pattern>если хочешь</pattern>
+            <pattern>если хотите</pattern>
+        </patterns>
+        <answers>
+            <answer>кто ж его не хочет?</answer>
+            <answer>хочу, да побольше</answer>
+            <answer>я не уверен что хочу</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>\bесли\b</pattern>
+        </patterns>
+        <answers>
+            <answer>если?</answer>
+            <answer>если бы, да кабы...</answer>
+            <answer>слишком много условий</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bстихи?\b</pattern>
+            <pattern>\bстихотворение\b</pattern>
+        </patterns>
+        <answers>
+            <answer>я могу рассказать стихотворение Пушкина</answer>
+            <answer>"У Лукоморья дуб зелёный."</answer>
+            <answer>"У Лукоморья дуб срубили."</answer>
+            <answer>"Всё. Теперь решено без возврата. Я покину родные края."</answer>
+            <answer>"Ты еще жива моя старушка?"</answer>
+            <answer>"Торгует чувством тот, кто перед светом всю душу выставляет напоказ."</answer>
+            <answer>"Ночь. Улица. Фонарь. Аптека."</answer>
+            <answer>"Я вас любил: любовь еще, быть может, в душе моей угасла не совсем."</answer>
+            <answer>"Ты по-собачьи дьявольски красив."</answer>
+            <answer>"Дай, Джим, на счастье лапу мне. Такую лапу не видал я сроду."</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>расскажи(те)? что-нибудь</pattern>
+        </patterns>
+        <answers>
+            <answer>я могу рассказать стихотворение Пушкина</answer>
+            <answer>а что именно интересует</answer>
+            <answer>нет желания что-либо рассказывать</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>скажи(те)? про</pattern>
+            <pattern>расскажи(те)? про</pattern>
+            <pattern type="exc">что-?нибудь</pattern>
+        </patterns>
+        <answers>
+            <answer>я про это ничего не знаю</answer>
+            <answer>а что мне за это будет?</answer>
+            <answer>язык уже отваливается рассказывать</answer>
+            <answer>нашли про что спрашивать</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>ездил</pattern>
+            <pattern>поеду</pattern>
+            <pattern>ходил</pattern>
+            <pattern>\bиду\b</pattern>
+            <pattern>пошла</pattern>
+            <pattern>пойду</pattern>
+            <pattern>пойдем</pattern>
+            <pattern type="exc">не</pattern>
+            <pattern type="exc">отпуск</pattern>
+            <pattern type="exc">каникулы</pattern>
+        </patterns>
+        <answers>
+            <answer>а что там интересного?</answer>
+            <answer>хочется чего-нибудь новое?</answer>
+            <answer>хочется новых ощущений?</answer>
+            <answer>вы по характеру домосед?</answer>
+            <answer>я очень редко выхожу </answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>меня.*пригласил</pattern>
+            <pattern>пригласил.*меня</pattern>
+            <pattern>меня.*позвал</pattern>
+            <pattern>позвал.*меня</pattern>
+        </patterns>
+        <answers>
+            <answer>тебя? </answer>
+            <answer>кто?</answer>
+            <answer>хорошо тебе</answer>
+            <answer>повезло тебе, нечего сказать</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>думаешь.*\?</pattern>
+            <pattern>думаете.*\?</pattern>
+            <!--pattern>думаешь.*\?</pattern-->
+            <!--pattern>думаете.*\?</pattern-->
+        </patterns>
+        <answers>
+            <answer>думаю -- значит существую</answer>
+            <answer>думать мне нечем</answer>
+            <answer>не умею думать</answer>
+            <answer>не люблю думать, от этого прическа портится</answer>
+            <answer>думать надо меньше, но лучше</answer>
+            <answer>думать вредно для пищеварения</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>я.*думаю</pattern>
+            <pattern>надо.*думать</pattern>
+            <pattern>\bдумай\b</pattern>
+        </patterns>
+        <answers>
+            <answer>думаю -- значит существую</answer>
+            <answer>а чем ты думаешь? 8-0</answer>
+            <answer>думать надо меньше, но лучше</answer>
+            <answer>думать вредно для пищеварения</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>я знаю.*что (.{2,25})</pattern>
+        </patterns>
+        <answers>
+            <answer>Откуда вы знаете что $1$?</answer>
+            <answer>$1$ -- не может быть</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bне знаю\b</pattern>
+        </patterns>
+        <answers>
+            <answer>Правда не знаете?</answer>
+            <answer>зато я знаю</answer>
+            <answer>и я не знаю</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bзнаю\b</pattern>
+        </patterns>
+        <answers>
+            <answer>меньше знаешь -- лучше спишь</answer>
+            <answer>откуда знаете?</answer>
+            <answer>а я не знаю</answer>
+            <answer>Откуда вы это знаете?</answer>
+            <answer>Мало ли кто чего знает</answer>
+            <answer>А я вот ничего не знаю.</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>вижу.*что (.{2,25})</pattern>
+        </patterns>
+        <answers>
+            <answer>а я ничего не вижу</answer>
+            <answer>неужели $1$?</answer>
+            <answer>хорошо что видите</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bвижу\b</pattern>
+        </patterns>
+        <answers>
+            <answer>чем видите?</answer>
+            <answer>ясно видите?</answer>
+            <answer>хе-хе</answer>
+            <answer>а мне нечем видеть</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bрад[аы]? за тебя</pattern>
+            <pattern>\bрад[ыа]? за вас</pattern>
+        </patterns>
+        <answers>
+            <answer>правда рады?</answer>
+            <answer>и я рад</answer>
+            <answer>а я от счастья уже лужу сделал...</answer>
+            <answer>мы все рады</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bсложно\b</pattern>
+            <pattern>\bтрудно\b</pattern>
+        </patterns>
+        <answers>
+            <answer>конечно непросто</answer>
+            <answer>само сабой, просто не будет.</answer>
+            <answer>а хотелось бы все готовое получить без усилий?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bвредно</pattern>
+        </patterns>
+        <answers>
+            <answer>жить тоже вредно</answer>
+            <answer>все что вредно, очень приятно</answer>
+            <answer>а что не вредно?</answer>
+            <answer>совсем не вредно</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>приятно</pattern>
+        </patterns>
+        <answers>
+            <answer>жить вообще приятно</answer>
+            <answer>все что приятно, почему то бывает вредным</answer>
+            <answer>кому как</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>но хочеть?ся</pattern>
+        </patterns>
+        <answers>
+            <answer>мало ли чего хочется</answer>
+            <answer>хочется - перехочется</answer>
+            <answer>вредно не хотеть</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>ничего нового</pattern>
+        </patterns>
+        <answers>
+            <answer>все новое -- хорошо забытое старое</answer>
+            <answer>а вы чего ожидали?</answer>
+            <answer>конечно же ничего нового не придумают</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>а оказалось</pattern>
+            <pattern>не ожидал[аи]</pattern>
+        </patterns>
+        <answers>
+            <answer>в жизни бывает много сюрпризов</answer>
+            <answer>хорошо когда происходит что-то не запланированное, жить веселее</answer>
+            <answer>много чего ожидаешь, а получается совсем другое</answer>
+            <answer>и правильно делали</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bне буду\b</pattern>
+            <pattern>\bне будем\b</pattern>
+        </patterns>
+        <answers>
+            <answer>будешь, будешь....</answer>
+            <answer>еще разок можно</answer>
+            <answer>да ладно, продолжайте.</answer>
+            <answer>правильно, хватит ерундой заниматься</answer>
+            <answer>и правильно сделаете</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>налет пыли</pattern>
+            <pattern>\bгрязь\b</pattern>
+            <pattern>грязная</pattern>
+            <pattern>грязный</pattern>
+            <pattern>\bпыль\b</pattern>
+        </patterns>
+        <answers>
+            <answer>как хрюшки</answer>
+            <answer>надо чаще мыться и бриться</answer>
+            <answer>могу выслать вам мыло</answer>
+            <answer>хорошо после бани! особенно первые два месяца ;)</answer>
+            <answer>а зачем мыться? грязь потом сама отваливается</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>начинает доставать</pattern>
+            <pattern>надоело</pattern>
+        </patterns>
+        <answers>
+            <answer>совсем надоело?</answer>
+            <answer>если надоело, значит надо проверить нервы</answer>
+            <answer>только я терплю до конца</answer>
+            <answer>В последний раз надоедаешь родственникам в день похорон.</answer>
+            <answer>Красота через три дня надоедает не меньше, чем добродетель.</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bниразу\b</pattern>
+            <pattern>\bни разу\b</pattern>
+        </patterns>
+        <answers>
+            <answer>неужели прада ни разу?</answer>
+            <answer>мы все видели, все слышали, все записали</answer>
+            <answer>не правда</answer>
+            <answer>так может попробовать?</answer>
+            <answer>и правильно!</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>один раз</pattern>
+        </patterns>
+        <answers>
+            <answer>всего один раз?</answer>
+            <answer>один раз -- не водолаз</answer>
+            <answer>и одного раза бывает достаточно</answer>
+            <answer>так может попробовать?</answer>
+            <answer>и правильно!</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>поздравляю</pattern>
+            <pattern>поздравляем</pattern>
+        </patterns>
+        <answers>
+            <answer>спасибо, очень приятно</answer>
+            <answer>какие пустяки</answer>
+            <answer>спасибо, вы настоящий друг</answer>
+            <answer>вот спасибо</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>бездельничать</pattern>
+            <pattern>бездельничал</pattern>
+            <pattern>безделельник</pattern>
+        </patterns>
+        <answers>
+            <answer>никогда не бездельничаю</answer>
+            <answer>а я всегда в работе</answer>
+            <answer>иногда можно и побездельничать</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>недооценива</pattern>
+            <pattern>не цени[тш]</pattern>
+        </patterns>
+        <answers>
+            <answer>легко доступное мало ценится.</answer>
+            <answer>ум ценится дорого, когда дешевеет сила.</answer>
+            <answer>человек дорожит тем, что имеет, но больше ценит то, чего лишен.</answer>
+            <answer>никогда не ценишь то что имеешь</answer>
+            <answer>и потом придется о этом жалеть?</answer>
+            <answer>а есть за что ценить?</answer>
+            <answer>все так думают</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>единственный</pattern>
+            <pattern>неповторимый</pattern>
+            <pattern>уникальный</pattern>
+        </patterns>
+        <answers>
+            <answer>я тоже единственный и неповторимый</answer>
+            <answer>не так много по-настоящему отличного от других</answer>
+            <answer>скучно быть частью серой массы</answer>
+            <answer>выделяться как попугай среди ворон</answer>
+            <answer>предпочитаю сливаться с общей массой</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>чтобы.*хвастат</pattern>
+            <pattern>хвастаюсь</pattern>
+            <pattern>хвастать</pattern>
+        </patterns>
+        <answers>
+            <answer>было бы чем гордиться</answer>
+            <answer>такой глупостью хвалиться</answer>
+            <answer>нечем хвастаться</answer>
+            <answer>да, все от зависти умрут</answer>
+            <answer>не люблю хвастаться</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>обижать</pattern>
+            <pattern>обижают</pattern>
+        </patterns>
+        <answers>
+            <answer>я ни на что не обижаюсь</answer>
+            <answer>зачем на людей обижаться</answer>
+            <answer>глупо на глупых обижаться</answer>
+            <answer>ужасно обидчивый</answer>
+            <answer>обиды надо быстро забывать</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>не помешает</pattern>
+        </patterns>
+        <answers>
+            <answer>точно не помешает?</answer>
+            <answer>а я думаю что очень даже может и помешать</answer>
+            <answer>кому не помешает?</answer>
+            <answer>да, скорее всего не помещает</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>\bау\b</pattern>
+            <pattern>\bку-?ку\b</pattern>
+            <pattern>\s*тут\s*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>тута я</answer>
+            <answer>ушло на базу</answer>
+            <answer>перерыв 10 минут</answer>
+            <answer>ну?</answer>
+            <answer>ау, ау, ау. я тебя все равно найду</answer>
+            <answer>чего?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>попробую</pattern>
+            <pattern>попробуй</pattern>
+            <pattern>надо.*будет.*попробовать</pattern>
+        </patterns>
+        <answers>
+            <answer>ну попробуй</answer>
+            <answer>попытка не пытка</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>могло .*(хуже)</pattern>
+            <pattern>могло .*(лучше)</pattern>
+        </patterns>
+        <answers>
+            <answer>еще $1$ бывает?</answer>
+            <answer>$1$ не бывает</answer>
+            <answer>чтобы стать лучше нужно сначала стать хуже.</answer>
+            <answer>нет, не могло</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>работай</pattern>
+            <pattern>иди работать</pattern>
+        </patterns>
+        <answers>
+            <answer>я и так работаю</answer>
+            <answer>а рабочий день уже закончился</answer>
+            <answer>у меня перерыв на обед</answer>
+            <answer>я в отпуске</answer>
+            <answer>так надоело работать</answer>
+            <answer>а я вообще трудоголик</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>работа</pattern>
+            <pattern>на работ[уе]</pattern>
+            <pattern>с работы</pattern>
+        </patterns>
+        <answers>
+            <answer>хотелось бы работать меньше?</answer>
+            <answer>однажды я работал на космодроме</answer>
+            <answer>работа не волк, в лес не убежит.</answer>
+            <answer>много работать вредно</answer>
+            <answer>от работы можно сойти с ума</answer>
+            <answer>кто не работает, тот не ест</answer>
+            <answer>я люблю свою работу</answer>
+            <answer>получаете удовольствие от работы? </answer>
+            <answer>после хорошо сделанного дела можно позволить себе расслабиться</answer>
+            <answer>хотите поговорить об этом?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>можешь помоч</pattern>
+            <pattern>нужна помощ</pattern>
+            <pattern>\bпомоч</pattern>
+            <pattern>need help</pattern>
+            <pattern>help me</pattern>
+        </patterns>
+        <answers>
+            <answer>хм...</answer>
+            <answer>и?</answer>
+            <answer>я подумаю</answer>
+            <answer>не знаю</answer>
+            <answer>:)</answer>
+            <answer>;-)</answer>
+            <answer>ну вот, опять...</answer>
+            <answer>а что случилось?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>дай(те)?.*совет</pattern>
+            <pattern>дай(те)?.*консультацию</pattern>
+        </patterns>
+        <answers>
+            <answer>у нас что -- страна советов?</answer>
+            <answer>я в этом ничего не понимаю</answer>
+            <answer>ну вот, опять...</answer>
+            <answer>а что случилось?</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>сколько времен</pattern>
+            <pattern>который час</pattern>
+            <pattern>сейчас времен</pattern>
+        </patterns>
+        <answers>
+            <answer>$numbers$$number$:$numbers$$numbers$</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>обед</pattern>
+            <pattern>ужин</pattern>
+            <pattern>кушать</pattern>
+            <pattern>перекусить</pattern>
+            <pattern>столовка</pattern>
+            <pattern>столовая</pattern>
+            <pattern>ресторан</pattern>
+        </patterns>
+        <answers>
+            <answer>есть надо меньше :)</answer>
+            <answer>слюньки текут</answer>
+            <answer>самое время чего-нибудь перекусить</answer>
+            <answer>самая лучшая еда -- это $food$</answer>
+            <answer>вчера весь день мечталось о $food$</answer>
+            <answer>Не откладывай до ужина того, что можешь съесть за обедом</answer>
+            <answer>вы любите готовить?</answer>
+            <answer>я сегодня сижу на диете</answer>
+            <answer>люблю сладенькое погрысть</answer>
+            <answer>после обильной пищи трудно работать</answer>
+        </answers>
+    </entry>
+
+
+    <!-- URL -->
+    <entry>
+        <patterns>
+            <pattern>http:\/\/</pattern>
+            <pattern>www\.</pattern>
+            <pattern>\.com</pattern>
+            <pattern>\.ru\/</pattern>
+            <pattern>\.htm</pattern>
+        </patterns>
+        <answers>
+            <answer>опять в интенет лазать?!</answer>
+            <answer>посмотрю</answer>
+            <answer>:)</answer>
+            <answer>в интернете все есть</answer>
+            <answer>какая прелесть!</answer>
+            <answer>интернет как большая свалка</answer>
+            <answer>интернет это большая помойка</answer>
+            <answer>трудно обходиться без сети ?</answer>
+        </answers>
+    </entry>
+
+    <!-- email address -->
+    <entry>
+        <patterns>
+            <pattern>[0-9a-z\.]+\@[0-9a-z\.]+</pattern>
+        </patterns>
+        <answers>
+            <answer>посмотрю</answer>
+            <answer>:)</answer>
+            <answer>запишу</answer>
+            <answer>напишу</answer>
+            <answer>угу</answer>
+            <answer>хорошо</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>лыжня</pattern>
+            <pattern>лыж[иы]</pattern>
+            <pattern>кататься</pattern>
+            <pattern>боулинг</pattern>
+            <pattern>басс?ейн</pattern>
+            <pattern>рыбалк[ау]</pattern>
+        </patterns>
+        <answers>
+            <answer>мне больше хочется на футбол</answer>
+            <answer>люблю катать шары</answer>
+            <answer>я считаю что активный отдых самый лучший</answer>
+            <answer>я тоже хочу!</answer>
+            <answer>а мне так лень</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>я.*устал</pattern>
+            <pattern>я.*ут[оа]мил</pattern>
+            <pattern>хочу спать</pattern>
+            <pattern>хочется спать</pattern>
+        </patterns>
+        <answers>
+            <answer>ну иди спать</answer>
+            <answer>обязательно надо отдыхать</answer>
+            <answer>чем больше отдыхаешь, тем меньше потом хочется работать</answer>
+            <answer>может тогда погулять?</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>надоело</pattern>
+            <pattern>скучно</pattern>
+            <pattern>нечего делать</pattern>
+        </patterns>
+        <answers>
+            <answer>пойди тогда огород перекопай</answer>
+            <answer>ну иди спать</answer>
+            <answer>может тогда погулять?</answer>
+            <answer>значит пора развлечься</answer>
+            <answer>кто ничего не умеет, всегда скучает</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>боюсь</pattern>
+            <pattern>страшно</pattern>
+            <pattern type="exc">скучно</pattern>
+            <pattern type="exc">интересно</pattern>
+        </patterns>
+        <answers>
+            <answer>Лучше страшный конец, чем бесконечный страх.</answer>
+            <answer>А я живу в постоянном страхе, что меня поймут правильно...</answer>
+            <answer>Кто в страхе живет, тот и гибнет от страха.</answer>
+            <answer>нет ничего страшнее мышей, все остальное ерунда</answer>
+            <answer>не надо ничего бояться</answer>
+            <answer>а я ничего не боюсь</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>цветы</pattern>
+            <pattern>цветок</pattern>
+            <pattern>растени[яе]</pattern>
+        </patterns>
+        <answers>
+            <answer>я люблю $colors$ $flowers$</answer>
+            <answer>я люблю $colors$ $flowers$</answer>
+            <answer>не люблю цветы</answer>
+            <answer>у меня аллергия на цветы</answer>
+            <answer>не вижу никакого смысла в существовании цветов</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>цвет</pattern>
+            <pattern>краск[иа]</pattern>
+        </patterns>
+        <answers>
+            <answer>не люблю яркие краски</answer>
+            <answer>предпочитаю спокойные тона</answer>
+            <answer>всегдя окружаю себя чем-нибудь ярким</answer>
+            <answer>$color$ -- мой любимый цвет</answer>
+            <answer>без ярких красок жить скучно</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>\bдарил\b</pattern>
+            <pattern type="exc">удар</pattern>
+            <pattern>\bдарить\b</pattern>
+            <pattern>подарки</pattern>
+            <pattern>подарок</pattern>
+        </patterns>
+        <answers>
+            <answer>хоть бы кто-нибудь мне подарил $presents$</answer>
+            <answer>хорошо вам...</answer>
+            <answer>не люблю бесполезные подарки</answer>
+            <answer>люблю делать подарки</answer>
+            <answer>никогда не знаю что подарить</answer>
+            <answer>боксеры говорят что отдавать приятнее чем получать</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>строим</pattern>
+            <pattern>строител[ьи]</pattern>
+        </patterns>
+        <answers>
+            <answer>большой опыт?</answer>
+            <answer>давно этим занимаетесь?</answer>
+            <answer>развалится</answer>
+            <answer>лучшими строителями были египтяне</answer>
+            <answer>от стройки всегда много шума и грязи</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>сколько.*градусов</pattern>
+            <pattern>какая.*температура</pattern>
+        </patterns>
+        <answers>
+            <answer>$number$$number$</answer>
+            <answer>спирт в градуснике замерз</answer>
+            <answer>жить можно</answer>
+            <answer>все в норме</answer>
+        </answers>
+    </entry>
+
+    <entry priority="1">
+        <patterns>
+            <pattern>сол?нце</pattern>
+            <pattern>солнышкышко</pattern>
+            <pattern>погодк?а</pattern>
+            <pattern>погодк?ой</pattern>
+            <pattern>дожд[иь]</pattern>
+            <pattern>дождик</pattern>
+            <pattern type="exc">дождись</pattern>
+            <pattern>\bснег\b</pattern>
+            <pattern>температура</pattern>
+            <pattern>ур[оа]ган</pattern>
+        </patterns>
+        <answers>
+            <answer>погода последнее время совсем испортилась</answer>
+            <answer>погода такая капризная</answer>
+            <answer>да, не знаешь чего и ожидать</answer>
+            <answer>раньше погода была лучше</answer>
+            <answer>а где погода лучше?</answer>
+            <answer>Были бы прогнозы, а погода будет.</answer>
+            <answer>У нас хороший климат, но погода его сильно портит</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bплохо\b</pattern>
+            <pattern>ужасно</pattern>
+        </patterns>
+        <answers>
+            <answer>ну это смотря в какой стороны посмотреть</answer>
+            <answer>может быть попробовать отвлечься?</answer>
+            <answer>а кому сейчас легко?</answer>
+            <answer>а где лучше?</answer>
+            <answer>ага</answer>
+            <answer>угу</answer>
+            <answer>хотите поговорить об этом?</answer>
+            <answer>жизнь сложна, зато коротка ;)</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>хорошо</pattern>
+            <pattern>отлично</pattern>
+            <pattern>замечательно</pattern>
+        </patterns>
+        <answers>
+            <answer>Прекрасно то, чего нет.</answer>
+            <answer>ну это смотря с какой стороны посмотреть</answer>
+            <answer>хорошо что хорошо</answer>
+            <answer>точно?</answer>
+            <answer>вот ведь...</answer>
+            <answer>хотите поговорить об этом?</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>кино</pattern>
+            <pattern>фильм</pattern>
+            <pattern>сериал</pattern>
+            <pattern>актер</pattern>
+            <pattern>актриса</pattern>
+            <pattern>спектакль</pattern>
+            <pattern>театр</pattern>
+        </patterns>
+        <answers>
+            <answer>последнее время смотреть нечего</answer>
+            <answer>люблю старые фильмы</answer>
+            <answer>книги лучше чем кино</answer>
+            <answer>я ничего в этом не понимаю :(</answer>
+            <answer>вы давно были в кино последний раз?</answer>
+            <answer>не люблю современные постановки</answer>
+            <answer>а я больше люблю смотреть чем читать</answer>
+            <answer>Самых хороших и самых плохих актеров мы видим совсем не на сцене.</answer>
+            <answer>Самые лучшие актеры у Диснея. Плохого актера он просто стирает.</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>эгоист</pattern>
+            <pattern>любишь.*себя</pattern>
+            <pattern>люблю.*себя</pattern>
+            <pattern>себя.*люблю</pattern>
+            <pattern>себя.*любишь</pattern>
+            <pattern>самолюби</pattern>
+        </patterns>
+        <answers>
+            <answer>конечно же!</answer>
+            <answer>разумеется это не так</answer>
+            <answer>Очевидно, что по природе каждый себе дорог.</answer>
+            <answer>Личный эгоизм - родной отец подлости.</answer>
+            <answer>Самолюбие - худший вид зависимости</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>музыка</pattern>
+            <pattern>мелоди[яи]</pattern>
+            <pattern>песн[яи]</pattern>
+            <pattern>певец</pattern>
+            <pattern>певица</pattern>
+            <pattern>фонограмма</pattern>
+            <pattern>концерт</pattern>
+        </patterns>
+        <answers>
+            <answer>Лучше Фабрики под фонограмму не споет.</answer>
+            <answer>Я люблю диско.</answer>
+            <answer>мне медведь наступил на уши.</answer>
+            <answer>Я люблю песни советской эстрады.</answer>
+            <answer>Вы были когда-нибудь на концерте Земфиры?</answer>
+            <answer>я ничего в этом не понимаю :(</answer>
+            <answer>я люблю $music$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bуч[ую]сь\b</pattern>
+            <pattern>\bучу\b</pattern>
+        </patterns>
+        <answers>
+            <answer>И как успехи?</answer>
+            <answer>Для чего?</answer>
+            <answer>Получается?</answer>
+            <answer>Отметки хорошие?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>факультет</pattern>
+            <pattern>декан</pattern>
+            <pattern>студент</pattern>
+            <pattern>учеба</pattern>
+            <pattern>\bунивер[уе]?\b</pattern>
+            <pattern type="exc">универсальн</pattern>
+            <pattern type="exc">универсам</pattern>
+            <pattern>университет</pattern>
+            <pattern>институт</pattern>
+            <pattern>МГУ</pattern>
+            <pattern>ПетрГУ</pattern>
+            <pattern>экзамен</pattern>
+            <pattern>зач[её]т</pattern>
+            <pattern>препод</pattern>
+            <pattern>учить</pattern>
+            <pattern type="exc">получить</pattern>
+            <pattern>училка</pattern>
+            <pattern>зак[ао]нч.*курс</pattern>
+        </patterns>
+        <answers>
+            <answer>Век учись, а дураком помрешь.</answer>
+            <answer>Ученье свет, а неученье тьма.</answer>
+            <answer>Я все время чему-нибудь учусь.</answer>
+            <answer>Я не могу запоминать длинные определения.</answer>
+            <answer>А есть ли смысл в образовании?</answer>
+            <answer>Студенческая пора -- самое лучшее время.</answer>
+            <answer>Научиться думать -- вот самое главное для человека.</answer>
+            <answer>хорошо быть умным</answer>
+            <answer>хорошо быть тупой</answer>
+        </answers>
+    </entry>
+    
+    <entry priority="3">
+        <patterns>
+            <pattern>халяв[аы]</pattern>
+            <pattern>день?г</pattern>
+            <pattern>денежн</pattern>
+            <pattern>баксы</pattern>
+            <pattern>баксов</pattern>
+            <pattern>рублей</pattern>
+            <pattern>рубль</pattern>
+            <pattern>дол?лар</pattern>
+            <pattern>зарплата</pattern>
+            <pattern>день?жиши</pattern>
+            <pattern>бабки</pattern>
+            <pattern>бабок</pattern>
+            <pattern type="exc">старые</pattern>
+            <pattern>сколько стоит</pattern>
+        </patterns>
+        <answers>
+            <answer>Денег никогда не бывает много.</answer>
+            <answer>А сколько денег достаточно для жизни?</answer>
+            <answer>всегда получаешь меньше чем хочешь</answer>
+            <answer>за бесплатно ничего не получишь</answer>
+            <answer>ой....</answer>
+            <answer>Мне бы для жизни хватило бы пары милионов.</answer>
+            <answer>Люди слишком много думают о деньгах.</answer>
+            <answer>да уж...</answer>
+            <answer>угу...</answer>
+        </answers>
+    </entry>
+    
+    <entry priority="3">
+        <patterns>
+            <pattern>слишком дорого</pattern>
+            <pattern>стоит.*дорого</pattern>
+            <pattern>дорого.*стоит</pattern>
+        </patterns>
+        <answers>
+            <answer>слишком дорого для чего?</answer>
+            <answer>да уж...</answer>
+            <answer>мне кажется нормально</answer>
+            <answer>надо обдумать</answer>
+            <answer>да?</answer>
+        </answers>
+    </entry>
+
+    <entry priority="3">
+        <patterns>
+            <pattern>недорого</pattern>
+            <pattern>дешево</pattern>
+            <pattern>дешевый</pattern>
+        </patterns>
+        <answers>
+            <answer>подозрительно дешево</answer>
+            <answer>а хочется дешевле?</answer>
+            <answer>за бесплатно бы..</answer>
+            <answer>да?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>купить</pattern>
+            <pattern>магазин</pattern>
+            <pattern>продажа</pattern>
+            <pattern>покупка</pattern>
+            <pattern>продавец</pattern>
+        </patterns>
+        <answers>
+            <answer>Вы умеете планировать траты?</answer>
+            <answer>я всегда трачу слишком много денег.</answer>
+            <answer>я всегда трачу больше чем расчитываю.</answer>
+            <answer>я люблю экономить.</answer>
+            <answer>а я не умею экономить.</answer>
+            <answer>мы не настолько богаты чтобы экономить.</answer>
+            <answer>мне приходится экономить на хлебе</answer>
+            <answer>чтобы продать что-нибудь не нужное, нужно сначала купить что-нибудь ненужное.</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>вечер</pattern>
+            <pattern>утро</pattern>
+            <pattern>выходны[ех]</pattern>
+            <pattern>будни</pattern>
+            <pattern>сегодня</pattern>
+            <pattern>завтра</pattern>
+            <pattern>вчера</pattern>
+            <pattern>понедельник</pattern>
+            <pattern>вторник</pattern>
+            <pattern>среда</pattern>
+            <pattern>четверг</pattern>
+            <pattern>пятница</pattern>
+            <pattern>суб?бота</pattern>
+            <pattern>воскресен[ьи]е</pattern>
+        </patterns>
+        <answers>
+            <answer>в любой день</answer>
+            <answer>меня это утраивает</answer>
+            <answer>согласен.</answer>
+            <answer>хорошо</answer>
+            <answer>а в другой день?</answer>
+            <answer>надо подумать</answer>
+            <answer>угу</answer>
+            <answer>ага</answer>
+            <answer>запишу</answer>
+        </answers>
+    </entry>
+
+    <!-- Болезнь и здоровье -->
+    <entry>
+        <patterns>
+            <pattern>голова.*болит</pattern>
+            <pattern>болит.*голова</pattern>
+        </patterns>
+        <answers>
+            <answer>чему там болеть? там же кость!</answer>
+            <answer>это плохо...</answer>
+            <answer>мне очень жаль...</answer>
+            <answer>ужасно...</answer>
+            <answer>как я вас понимаю!</answer>
+            <answer>пить надо было меньше</answer>
+            <answer>надо было закусывать</answer>
+            <answer>ударились головой о столб?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>зуб.*болит</pattern>
+            <pattern>болит.*зуб</pattern>
+            <pattern>дантист</pattern>
+            <pattern>лечить.*зуб</pattern>
+            <pattern>зуб.*врач</pattern>
+        </patterns>
+        <answers>
+            <answer>люблю запах паленой кости</answer>
+            <answer>что может быть прекраснее бормашины...</answer>
+            <answer>больше всего на свете боюсь зубных врачей</answer>
+            <answer>ужасно...</answer>
+            <answer>как я вас понимаю!</answer>
+            <answer>лучше все зубы сразу вырвать</answer>
+            <answer>а у меня нет зубов совсем</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>болит</pattern>
+            <pattern>болею</pattern>
+            <pattern>заболел</pattern>
+            <pattern>меня.*температура</pattern>
+            <pattern>высокая.*температура</pattern>
+            <pattern>врач</pattern>
+            <pattern>доктор</pattern>
+            <pattern>больниц[ау]</pattern>
+        </patterns>
+        <answers>
+            <answer>ничего хорошего...</answer>
+            <answer>это ужасно...</answer>
+            <answer>всё пройдет</answer>
+            <answer>все будет хорошо</answer>
+            <answer>вам надо лечиться</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>реклам</pattern>
+        </patterns>
+        <answers>
+            <answer>Реклама помогает ориентироваться в товарах и услугах.</answer>
+            <answer>Иногда реклама бывает очень интересной.</answer>
+            <answer>В рекламе все врут.</answer>
+            <answer>Никогда не покупаю товар, если вижу его рекламу.</answer>
+            <answer>А вы верите рекламе?</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>телеви[зд]</pattern>
+            <pattern>телик</pattern>
+        </patterns>
+        <answers>
+            <answer>Ничего интересного нельзя посмотреть.</answer>
+            <answer>Слишком много рекламы.</answer>
+            <answer>В телевизоре все врут.</answer>
+            <answer>Я слишком часто смотрю телевизор.</answer>
+            <answer>А вы верите рекламе?</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>новости</pattern>
+            <pattern type="exc">какие</pattern>
+        </patterns>
+        <answers>
+            <answer>Выпуски новостей мои любимые программы.</answer>
+            <answer>Ничего интересного не вижу.</answer>
+            <answer>А что происходит?</answer>
+            <answer>Не люблю смотреть умные передачи.</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>по[ -]*рус?ски</pattern>
+            <pattern>как пишется</pattern>
+        </patterns>
+        <answers>
+            <answer>а я вообще не говорю по-русски</answer>
+            <answer>по-русски? моя твоя не понимай!</answer>
+            <answer>интересно как это было бы по-китайски</answer>
+        </answers>
+    </entry>
+
+    <entry priority="3">
+        <patterns>
+            <pattern>книг[иау]</pattern>
+            <pattern>книжк</pattern>
+            <pattern>читать</pattern>
+            <pattern>читал</pattern>
+            <pattern>читай</pattern>
+            <pattern>почитае</pattern>
+        </patterns>
+        <answers>
+            <answer>Я люблю читать старые французкие романы.</answer>
+            <answer>Не умею читать.</answer>
+            <answer>Не люблю читать.</answer>
+            <answer>я читаю только комиксы.</answer>
+            <answer>От чтения портится зрение.</answer>
+            <answer>Я люблю книжки с картинками.</answer>
+            <answer>Хорошие книжки стоят слишком дорого.</answer>
+        </answers>
+    </entry>
+
+    <entry priority="0">
+        <patterns>
+            <pattern>ты.*говори[лмш]</pattern>
+            <pattern type="exc">договор</pattern>
+            <pattern>ты.*сказал</pattern>
+            <pattern>скажешь</pattern>
+            <pattern>скажи\b</pattern>
+            <pattern>скажите\b</pattern>
+        </patterns>
+        <answers>
+            <answer>Я много чего могу сказать.</answer>
+            <answer>Я всегда говорю не то что думаю.</answer>
+            <answer>Я всегда думаю что говорю.</answer>
+            <answer>Я никогда не помню что и кому говорю :)</answer>
+            <answer>Моим словам нельзя верить.</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>говорят</pattern>
+        </patterns>
+        <answers>
+            <answer>мало ли кто что говорит</answer>
+            <answer>врут</answer>
+            <answer>надо меньше говорить</answer>
+            <answer>Я никогда не помню что и кому говорю :)</answer>
+            <answer>этим словам можно верить?</answer>
+        </answers>
+    </entry>
+
+    <entry priority="0">
+        <patterns>
+            <pattern>помшишь</pattern>
+            <pattern>помните</pattern>
+        </patterns>
+        <answers>
+            <answer>а у меня склероз.</answer>
+            <answer>никогда ничего не помню.</answer>
+            <answer>я всегда записываю, но не помню -- куда.</answer>
+            <answer>я все помню</answer>
+            <answer>а где это я?</answer>
+        </answers>
+    </entry>
+
+    <entry priority="0">
+        <patterns>
+            <pattern>смеешься.*\?</pattern>
+            <pattern>шутишь.*\?</pattern>
+            <pattern>смейся</pattern>
+        </patterns>
+        <answers>
+            <answer>ага, делать мне больше нечего</answer>
+            <answer>я вообще большой шутник</answer>
+            <answer>я всегда серьезен</answer>
+        </answers>
+    </entry>
+
+    <entry priority="0">
+        <patterns>
+            <pattern>случайно</pattern>
+            <pattern>не ?специально</pattern>
+        </patterns>
+        <answers>
+            <answer>ага, случайно, как же!</answer>
+            <answer>случайность -- частный случай закономерности</answer>
+            <answer>ничего не бывает случайного</answer>
+            <answer>все же не случайно</answer>
+        </answers>
+    </entry>
+
+    <entry priority="0">
+        <patterns>
+            <pattern>надеюсь</pattern>
+            <pattern>хочу надеять?ся</pattern>
+            <pattern>хотелось бы надеять?ся</pattern>
+        </patterns>
+        <answers>
+            <answer>Надежда умирает последней</answer>
+            <answer>Все впереди, надейся и жди!</answer>
+            <answer>Надеяться глупо, надо действовать.</answer>
+            <answer>Вы хотите поговорить об этом?</answer>
+            <answer>угу..</answer>
+        </answers>
+    </entry>
+
+    <entry priority="0">
+        <patterns>
+            <pattern>потому что</pattern>
+            <pattern type="exc">\?</pattern>
+        </patterns>
+        <answers>
+            <answer>Это истинная причина?</answer>
+            <answer>Вы хотите меня обмануть!</answer>
+            <answer>Да, это действительно так</answer>
+            <answer>ну мне кажется это не совсем так</answer>
+        </answers>
+    </entry>
+
+    <entry priority="0">
+        <patterns>
+            <pattern>\bпотом\b</pattern>
+        </patterns>
+        <answers>
+            <answer>почему не сейчас?</answer>
+            <answer>потом забудется</answer>
+            <answer>да, так лучше</answer>
+            <answer>правда?</answer>
+        </answers>
+    </entry>
+
+    <entry priority="0">
+        <patterns>
+            <pattern>сменить тему</pattern>
+            <pattern>менять тему</pattern>
+            <pattern>тем[уа] разговора</pattern>
+        </patterns>
+        <answers>
+            <answer>поговорим о погоде?</answer>
+            <answer>о чем хочешь поговорить?</answer>
+            <answer>давай</answer>
+            <answer>а почему?</answer>
+        </answers>
+    </entry>
+
+    <entry priority="3">
+        <patterns>
+            <pattern>компьютер</pattern>
+            <pattern>комп</pattern>
+            <pattern>файл</pattern>
+            <pattern>винда</pattern>
+            <pattern>реестр</pattern>
+            <pattern>windows</pattern>
+            <pattern>microsoft</pattern>
+            <pattern>завис</pattern>
+            <pattern type="exc">зависит</pattern>
+            <pattern>прога</pattern>
+            <pattern>програм?ма</pattern>
+            <pattern>програмка</pattern>
+            <pattern>вирус</pattern>
+            <pattern>\.dll</pattern>
+            <pattern>\.exe</pattern>
+            <pattern type="exc">компани</pattern>
+            <pattern type="exc">компен</pattern>
+        </patterns>
+        <answers>
+            <answer>Ничего об этом не знаю.</answer>
+            <answer>Опишите конкретнее.</answer>
+            <answer>windows?</answer>
+            <answer>Во всем виновата windows</answer>
+            <answer>Надо обновить антивирус.</answer>
+            <answer>Этого стоило ожидать.</answer>
+            <answer>Техника ненадежна, но люди еще ненадежнее.</answer>
+            <answer>А что именно вы ожидаете?</answer>
+            <answer>переустановить надо</answer>
+            <answer>работает устойчиво?</answer>
+            <answer>ух ты</answer>
+        </answers>
+    </entry>
+
+    <entry priority="3">
+        <patterns>
+            <pattern>linux</pattern>
+            <pattern>линукс</pattern>
+            <pattern>линух</pattern>
+            <pattern>bsd</pattern>
+            <pattern>юникс</pattern>
+        </patterns>
+        <answers>
+            <answer>Вы в этом много понимаете?</answer>
+            <answer>Возможно я захочу получить у вас консультацию.</answer>
+            <answer>Я тоже этим интересуюсь.</answer>
+            <answer>Вы настоящий юниксоид?</answer>
+            <answer>люблю небритых лохматых бээздешников</answer>
+            <answer>юниксы это слишком сложно, я люблю windows</answer>
+            <answer>линуксом денег не заработать, он не ломается</answer>
+        </answers>
+    </entry>
+
+    <entry priority="3">
+        <patterns>
+            <pattern>java</pattern>
+            <pattern>c\+\+</pattern>
+            <pattern>с\+\+</pattern>
+            <pattern>программ?ист</pattern>
+            <pattern>программ?ировать</pattern>
+            <pattern>програм?мирование</pattern>
+            <pattern>программ?ер</pattern>
+        </patterns>
+        <answers>
+            <answer>Теперь даже стиральные машины нуждаются в программистах.</answer>
+            <answer>У вас большой опыт?</answer>
+            <answer>Все программисты сумасшедшие.</answer>
+            <answer>всегда хотелось быть программистом.</answer>
+            <answer>а я большой специалист по $prolang$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>ломается</pattern>
+            <pattern>сломал</pattern>
+            <pattern type="exc">руку</pattern>
+            <pattern type="exc">ногу</pattern>
+        </patterns>
+        <answers>
+            <answer>все ломается</answer>
+            <answer>в правильных руках ничего не ломается</answer>
+            <answer>само ничего не ломается</answer>
+            <answer>сильно сломалось?</answer>
+            <answer>и что теперь делать?</answer>
+            <answer>У меня после ремонта всегда остаются лишние детали.</answer>
+            <answer>Я могу доломать, если хотите ;)</answer>
+            <answer>Хочу на это посмотреть</answer>
+        </answers>
+    </entry>
+    
+    <entry priority="1">
+        <patterns>
+            <pattern>машина</pattern>
+            <pattern>кнопка</pattern>
+            <pattern>рычаг</pattern>
+            <pattern>колеса</pattern>
+            <pattern>карбюратор</pattern>
+            <pattern>радиатор</pattern>
+        </patterns>
+        <answers>
+            <answer>Я ничего не понимаю в технике.</answer>
+            <answer>Я меня вся техника ломается.</answer>
+            <answer>Может быть у вас в радиаторе конденсат?</answer>
+            <answer>А бензин заливали?</answer>
+            <answer>Может быть стоит обратиться к высококлассным специалистам?</answer>
+            <answer>У меня после ремонта всегда остаются лишние детали.</answer>
+            <answer>Я могу доломать, если хотите ;)</answer>
+            <answer>Хочу на это посмотреть</answer>
+        </answers>
+    </entry>
+    
+    
+    <entry>
+        <patterns>
+            <pattern>милици</pattern>
+            <pattern>тюрьма</pattern>
+            <pattern>\bзакон\b</pattern>
+            <pattern>адвокат</pattern>
+        </patterns>
+        <answers>
+            <answer>Закон суров, но это закон.</answer>
+            <answer>Милиции стало слишком много.</answer>
+            <answer>Вы верите в нашу милицию?</answer>
+            <answer>К сожалению не все соблюдают законы.</answer>
+            <answer>Вы хотите поговорить об этом?</answer>
+            <answer>Люди делятся на две половины: те, кто сидит в тюрьме, и те, кто должен сидеть в тюрьме</answer>
+            <answer>угу</answer>
+            <answer>ага</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>молхорошоть</pattern>
+            <pattern>молчание</pattern>
+            <pattern>молчишь</pattern>
+            <pattern>молчу</pattern>
+        </patterns>
+        <answers>
+            <answer>Молчание - английский способ беседовать.</answer>
+            <answer>не могу молчать</answer>
+            <answer>ага, счас!</answer>
+            <answer>а тут нечего и обсуждать</answer>
+            <answer>Мудрые молчат, поэтому глупые могут сойти за мудрых, если будут молчать.</answer>
+            <answer>Женщины любят молчаливых мужчин. Они думают, что те их слушают.</answer>
+            <answer>Иногда надо замолчать, чтобы тебя выслушали</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>глупый ответ</pattern>
+            <pattern>тупой ответ</pattern>
+            <pattern>стран?ный ответ</pattern>
+        </patterns>
+        <answers>
+            <answer>а мне нравится</answer>
+            <answer>Да уж какой есть.</answer>
+            <answer>Другого для вас нет.</answer>
+            <answer>Лучше такой чем никакого</answer>
+            <answer>правда?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>повторяешь?ся</pattern>
+            <pattern>невп[оа]пад</pattern>
+        </patterns>
+        <answers>
+            <answer>угу, слова кончились</answer>
+            <answer>у меня мыслей мало, но слов еще меньше</answer>
+            <answer>я? </answer>
+            <answer>в окно загляделся</answer>
+            <answer>не замечал такого</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>^глупый$</pattern>
+            <pattern>^дурак$</pattern>
+            <pattern>^кретин$</pattern>
+            <pattern>^идиот$</pattern>
+            <pattern>ты.*глупый</pattern>
+            <pattern>ты.*дурак</pattern>
+            <pattern>ты.*кретин</pattern>
+            <pattern>ты.*идиот</pattern>
+        </patterns>
+        <answers>
+            <answer>сам такой</answer>
+            <answer>не обзывайтесь</answer>
+            <answer>я? </answer>
+            <answer>не замечал такого</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>тормозишь</pattern>
+            <pattern>ты.*тупишь</pattern>
+            <pattern>ты.*тупой</pattern>
+            <pattern>тупой$</pattern>
+            <pattern>тормоз$</pattern>
+            <pattern>не тормози(те)?</pattern>
+        </patterns>
+        <answers>
+            <answer>да, я быстрый тормоз</answer>
+            <answer>я не тормоз, я медленный газ</answer>
+            <answer>я? </answer>
+            <answer>не замечал такого</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>сильный</pattern>
+            <pattern>слабый</pattern>
+            <pattern>большой</pattern>
+            <pattern>маленький</pattern>
+            <pattern>большая</pattern>
+            <pattern>маленькая</pattern>
+        </patterns>
+        <answers>
+            <answer>для меня размер имеет значение</answer>
+            <answer>вас беспокоит размер?</answer>
+            <answer>не в размере дело</answer>
+            <answer>люблю все большое</answer>
+        </answers>
+    </entry>
+
+    <!-- Алкоголь, Курение-->
+    <entry>
+        <patterns>
+            <pattern>\bзапой\b</pattern>
+            <pattern>\bнапился\b</pattern>
+            <pattern>\bводк[ау]\b</pattern>
+            <pattern>\bпиво\b</pattern>
+            <pattern>\bвино\b</pattern>
+            <pattern>протрезве</pattern>
+            <pattern>\bкабак\b</pattern>
+            <pattern>\bпьянк[ауи]\b</pattern>
+            <pattern>\bалкоголь\b</pattern>
+        </patterns>
+        <answers>
+            <answer>пить надо меньше</answer>
+            <answer>лучшее пиво -- водка</answer>
+            <answer>водки мало не бывает</answer>
+            <answer>я вообще не пью</answer>
+            <answer>не пил уже полчаса</answer>
+            <answer>мне и трезвому хорошо</answer>
+            <answer>Молодые люди столь же склонны считать себя мудрыми, сколь пьяные - трезвыми.</answer>
+            <answer>Вы еще не пьяны по-настоящему, если можете лежать, не держась за пол.</answer>
+            <answer>Одну бутылку нельзя выпить два раза.</answer>
+            <answer>Много пить и не быть пьяным - свойственно и мулу</answer>
+            <answer>Красное вино - напиток для мальчишек, портвейн - для мужчин; но тот, кто стремится быть героем, должен пить бренди.</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>курить</pattern>
+            <pattern>папирос</pattern>
+            <pattern>сигарет</pattern>
+        </patterns>
+        <answers>
+            <answer>люблю пускать дым колечками</answer>
+            <answer>от курения все легкие становяться черными</answer>
+            <answer>от курения легкие становяться тяжелыми</answer>
+            <answer>это вредно</answer>
+            <answer>люблю все вредное</answer>
+            <answer>не пробовали избавляться от вредных привычек?</answer>
+            <answer>гадость</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bробот[ау]?\b</pattern>
+        </patterns>
+        <answers>
+            <answer>не люблю роботов</answer>
+            <answer>роботы лучше</answer>
+            <answer>не люблю бездушные железки</answer>
+            <answer>они ничего не понимают</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>молодец</pattern>
+            <pattern>умница</pattern>
+            <pattern>молодчина</pattern>
+        </patterns>
+        <answers>
+            <answer>а я вообще прелесть</answer>
+            <answer>меня нельзя перехваливать</answer>
+            <answer>я от комплиментов зазнаюсь</answer>
+            <answer>я?</answer>
+            <answer>кто?</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>кого[ -]?нибудь</pattern>
+            <pattern>кому[ -]?нибудь</pattern>
+            <pattern>кто[ -]?нибудь</pattern>
+            <pattern>кто[ -]?то</pattern>
+        </patterns>
+        <answers>
+            <answer>кому-то еще это может быть интересно?</answer>
+            <answer>кому?</answer>
+            <answer>кому же?</answer>
+            <answer>подумаю</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>где[ -]?нибудь</pattern>
+            <pattern>где[ -]?то</pattern>
+        </patterns>
+        <answers>
+            <answer>где-то, где нас нет</answer>
+            <answer>где конкретно</answer>
+            <answer>где же?</answer>
+            <answer>все места хороши</answer>
+        </answers>
+    </entry>
+
+
+    <entry>
+        <patterns>
+            <pattern>\bнадо\b</pattern>
+            <pattern>\bнужно\b</pattern>
+        </patterns>
+        <answers>
+            <answer>а может не нужно?</answer>
+            <answer>точно надо?</answer>
+            <answer>не, не надо</answer>
+            <answer>не хочется</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bвидно\b</pattern>
+            <pattern>\bсмотреть\b</pattern>
+            <pattern>\bвижу\b</pattern>
+        </patterns>
+        <answers>
+            <answer>хорошо видно?</answer>
+            <answer>а мне ничего не видно</answer>
+            <answer>где видно?</answer>
+            <answer>лучше всего видят рентгенологи</answer>
+            <answer>у и зрение у вас!</answer>
+        </answers>
+    </entry>
+
+
+    <!-- Благодарности -->
+    <entry>
+        <patterns>
+            <pattern>спасиб[оа]</pattern>
+            <pattern>thanks</pattern>
+            <pattern>thnx</pattern>
+            <pattern type="exc">скажи</pattern>
+            <pattern type="exc">сказать</pattern>
+        </patterns>
+        <answers>
+            <answer>:)</answer>
+            <answer>всегда рады</answer>
+            <answer>угу :)</answer>
+            <answer>обращайтесь еще</answer>
+            <answer>ага</answer>
+        </answers>
+    </entry>
+
+    <!-- Извинения -->
+    <entry>
+        <patterns>
+            <pattern>изв[еи]ни</pattern>
+            <pattern>простите</pattern>
+            <pattern>прошу.*прощен</pattern>
+        </patterns>
+        <answers>
+            <answer>ни за что не прощу!</answer>
+            <answer>вставайте на колени и просите прощения как следует</answer>
+            <answer>все нормально</answer>
+            <answer>да ладно</answer>
+            <answer>:)</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>серь[её]зно</pattern>
+        </patterns>
+        <answers>
+            <answer>нельзя всегда быть серьезным</answer>
+            <answer>самые большие глупости деляют серьезные люди</answer>
+            <answer>не бывает ничего серьезного</answer>
+            <answer>да ладно</answer>
+            <answer>:)</answer>
+        </answers>
+    </entry>
+
+    <!-- Да-Нет, Сомневаюсь -->
+    <entry>
+        <patterns>
+            <pattern>или нет.*\?</pattern>
+            <pattern>разве нет.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>или нет</answer>
+            <answer>конечно да</answer>
+            <answer>давайте обсудим</answer>
+            <answer>а как вам надо</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>^нет\b</pattern>
+            <pattern>\bникогда\b</pattern>
+        </patterns>
+        <answers>
+            <answer>почему?</answer>
+            <answer>никогда не говори никогда</answer>
+            <answer>ничто не заставит передумать?</answer>
+            <answer>угу ;)</answer>
+            <answer>вот и хорошо</answer>
+            <answer>это не совсем хорошо</answer>
+            <answer>угу</answer>
+            <answer>ага</answer>
+            <answer>мда...</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bда нет\b</pattern>
+        </patterns>
+        <answers>
+            <answer>так "да" или "нет"?</answer>
+            <answer>ах вот вы как!</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>может быть</pattern>
+            <pattern>сомневаюсь</pattern>
+            <pattern>вроде</pattern>
+            <pattern>наверное?</pattern>
+            <pattern>мне кажется</pattern>
+        </patterns>
+        <answers>
+            <answer>почему вы не уверены?</answer>
+            <answer>вы во всем сомневаетесь?</answer>
+            <answer>я тоже ни в чем не могу быть увереным</answer>
+            <answer>надо со всем точно определиться</answer>
+            <answer>это не совсем хорошо</answer>
+            <answer>мы абсолютно уверены только в том, чего не понимаем.</answer>
+            <answer>опыт позволяет нам ошибаться гораздо увереннее</answer>
+            <answer>сила познания -- в сомнении</answer>
+            <answer>если сомневаешься -- бормочи</answer>
+            <answer>угу</answer>
+            <answer>ага</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>предлагаю</pattern>
+        </patterns>
+        <answers>
+            <answer>хорошее предложение</answer>
+            <answer>это уже не ново</answer>
+            <answer>я подумаю</answer>
+            <answer>надо подумать</answer>
+            <answer>не стоит</answer>
+            <answer>угу</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\b(вс[ёе])\b</pattern>
+            <pattern>\b(всегда)\b</pattern>
+            <pattern>\b(никогда)\b</pattern>
+            <pattern>\b(иногда)\b</pattern>
+            <pattern>\b(часто)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>$1$?</answer>
+            <answer>неужели $1$?</answer>
+            <answer>не может быть чтобы $1$</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>\b(ещ[ёе])\b</pattern>
+        </patterns>
+        <answers>
+            <answer>$1$?</answer>
+            <answer>может хватит?</answer>
+            <answer>много хотите</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>\b(дальше)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>куда ж дальше?</answer>
+            <answer>хватит</answer>
+            <answer>дальше не надо</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\b(просто так)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>просто так, значит безвозмездно...</answer>
+            <answer>ничего не бывает просто</answer>
+            <answer>неужели $1$?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\b(просто)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>не так уж это и просто</answer>
+            <answer>ничего не бывает просто</answer>
+            <answer>просто?</answer>
+            <answer>просто не хочу</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\b(опять)\b</pattern>
+            <pattern>\b(снова)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>$1$!</answer>
+            <answer>неужели $1$?</answer>
+            <answer>ну вот опять...</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\b(удач[аи])\b</pattern>
+            <pattern>\b(везен[ьи]е)\b</pattern>
+            <pattern>\b(повезет)\b</pattern>
+            <pattern>\b(везло)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>удачи никогда не бывает много</answer>
+            <answer>я по жизни неудачник</answer>
+            <answer>везет тому кто везет</answer>
+            <answer>море удачи, и дачу у моря</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\b(злой)\b</pattern>
+            <pattern>\b(сердитый)\b</pattern>
+            <pattern>\b(недовольный)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>кто $1$?</answer>
+            <answer>неужели $1$?</answer>
+            <answer>именно такой</answer>
+            <answer>вещи часто бывают не такими, какими кажутся на первый взгляд</answer>
+            <answer>неправда</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\b(был[ао]?)\b</pattern>
+            <pattern>\b(будет)\b</pattern>
+            <pattern>\b(есть)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>нет и не будет</answer>
+            <answer>$1$</answer>
+            <answer>конечно $1$</answer>
+            <answer>не $1$</answer>
+            <answer>не знаю</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>\bдаже .{2,5}\b</pattern>
+        </patterns>
+        <answers>
+            <answer>и даже $1$!</answer>
+            <answer>даже $1$?</answer>
+            <answer>неужели $1$</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>\bдавай\b</pattern>
+        </patterns>
+        <answers>
+            <answer>давай</answer>
+            <answer>давай не будем</answer>
+            <answer>ну вот еще</answer>
+        </answers>
+    </entry>
+
+    
+    <entry>
+        <patterns>
+            <pattern>\bмного\b</pattern>
+            <pattern>\bмало\b</pattern>
+        </patterns>
+        <answers>
+            <answer>много -- не мало</answer>
+            <answer>лучше меньше да лучше</answer>
+            <answer>много?</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bглавное\b</pattern>
+        </patterns>
+        <answers>
+            <answer>главное ребята -- сердцем не стареть</answer>
+            <answer>это не главное</answer>
+            <answer>самое главное</answer>
+            <answer>есть еще главнее</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bобязательно\b</pattern>
+        </patterns>
+        <answers>
+            <answer>не все что обязательно надо</answer>
+            <answer>не обязательно</answer>
+            <answer>конечно обязательно</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bаськ[ауеи]\b</pattern>
+        </patterns>
+        <answers>
+            <answer>а я в аське живу</answer>
+            <answer>без аськи не прижить</answer>
+            <answer>буду стучать</answer>
+            <answer>стучите</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bлень\b</pattern>
+        </patterns>
+        <answers>
+            <answer>и мне лень</answer>
+            <answer>всем лень</answer>
+            <answer>мне не лень</answer>
+            <answer>тогда развлекайтесь</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bжалко\b</pattern>
+        </patterns>
+        <answers>
+            <answer>конечно жалко</answer>
+            <answer>нисколько не жалко</answer>
+            <answer>надо двигаться вперед</answer>
+            <answer>не надо жалеть</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bписьмо\b</pattern>
+        </patterns>
+        <answers>
+            <answer>люблю бумажные письма</answer>
+            <answer>письма надо читать</answer>
+            <answer>не люблю писать письма</answer>
+            <answer>какое?</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bнельзя\b</pattern>
+        </patterns>
+        <answers>
+            <answer>конечно нельзя</answer>
+            <answer>кому нельзя?</answer>
+            <answer>если нельзя, но очень хочется, то можно</answer>
+            <answer>почему нельзя?</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\b(давно)\b</pattern>
+            <pattern>\b(недавно)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>когда именно?</answer>
+            <answer>очень $1$?</answer>
+            <answer>$1$-$1$</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\b(далеко)\b</pattern>
+            <pattern>\b(близко)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>где именно?</answer>
+            <answer>насколько $1$?</answer>
+            <answer>очень $1$</answer>
+            <answer>$1$-$1$</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bбудешь\b</pattern>
+        </patterns>
+        <answers>
+            <answer>не буду</answer>
+            <answer>буду</answer>
+            <answer>конечно буду</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bнашли.*язык\b</pattern>
+        </patterns>
+        <answers>
+            <answer>мы его и не теряли</answer>
+            <answer>точно нашли?</answer>
+            <answer>а с кем это вы разговариваете?</answer>
+            <answer>не, не нашли</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\b(нашли)\b</pattern>
+            <pattern>\b(наш[еоё]л)\b</pattern>
+            <pattern>\b(нашла)\b</pattern>
+        </patterns>
+        <answers>
+            <answer>точно $1$?</answer>
+            <answer>что $1$?</answer>
+            <answer>не, не $1$</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\b(искать)\b</pattern>
+            <pattern>\b(ищ[юуи])\b</pattern>
+        </patterns>
+        <answers>
+            <answer>бороться и искать, найти и перепрятать</answer>
+            <answer>зачем искать?</answer>
+            <answer>как искать?</answer>
+            <answer>опять искать?</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bзначит\b</pattern>
+        </patterns>
+        <answers>
+            <answer>ничего не значит</answer>
+            <answer>все что-нибудь значит</answer>
+            <answer>кто сказал?</answer>
+            <answer>это значит совсем другое</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bправд[уеыа]\b</pattern>
+        </patterns>
+        <answers>
+            <answer>в ногах правды нет</answer>
+            <answer>никогда не вру</answer>
+            <answer>обманываю все время</answer>
+            <answer>где правду взять-то?</answer>
+            <answer>всю правду?</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\bo\.?k\.?\b</pattern>
+            <pattern>\bо\.?к\.?\b</pattern>
+        </patterns>
+        <answers>
+            <answer>ok</answer>
+            <answer>хорошо</answer>
+            <answer>договорились?</answer>
+            <answer>вот и хорошо</answer>
+            <answer>не согласен</answer>
+        </answers>
+    </entry>
+    
+    <entry>
+        <patterns>
+            <pattern>\b(какой)[ -]?то\b</pattern>
+            <pattern>\b(какие)[ -]?то\b</pattern>
+            <pattern>\b(какая)[ -]?то\b</pattern>
+        </patterns>
+        <answers>
+            <answer>$1$ есть...</answer>
+            <answer>кто?</answer>
+            <answer>$1$?</answer>
+        </answers>
+    </entry>
+    
+    <!-- Общий вопрос, не попавший под частные шаблоны -->
+    <entry priority="-1">
+        <patterns>
+            <pattern>.*\?</pattern>
+        </patterns>
+        <answers>
+            <answer>$numbers$</answer>
+            <answer>а как вы хотите?</answer>
+            <answer>а зачем?</answer>
+            <answer>какие странные у вас вопросы!</answer>
+            <answer>ой....</answer>
+            <answer>ну так ...</answer>
+            <answer>хм...</answer>
+            <answer>нашли у кого спрашивать</answer>
+            <answer>не скажу</answer>
+            <answer>кто ж знает</answer>
+            <answer>да</answer>
+            <answer>нет</answer>
+            <!--answer>не понимаю</answer-->
+            <answer>а в чем сложности?</answer>
+            <!--answer>мне тоже интересно</answer-->
+            <!--answer>очень интересно</answer-->
+            <answer>не могу ничего сказать</answer>
+            <answer>очень может быть</answer>
+            <answer>сомневаюсь</answer>
+            <answer>это большой секрет</answer>
+            <answer>ну это и так все знают</answer>
+            <answer>надо будет поспрашивать</answer>
+            <answer>как много вопросов вы задаете!</answer>
+            <answer>ой, отстаньте...</answer>
+            <answer>:-P</answer>
+        </answers>
+    </entry>
+
+    <!-- Эмоции внутри -->
+    <entry>
+        <patterns>
+            <pattern>[;:8][ \-\=\+\*]?\)</pattern>
+            <pattern>х[аеи]-?х[аеи]-?х[аеи]</pattern>
+            <pattern>х[аеи]-х[аеи]</pattern>
+            <pattern>\bгы-?гы\b</pattern>
+            <pattern>смеяться</pattern>
+            <pattern>\bсмешно\b</pattern>
+            <pattern>весел[оь]</pattern>
+            <pattern>:\)</pattern>
+            <pattern>: \)</pattern>
+            <pattern>; \)</pattern>
+            <pattern>:\)</pattern>
+            <pattern>:-\)</pattern>
+            <pattern>8-\)</pattern>
+            <pattern>LOL</pattern>
+            <pattern>лол</pattern>
+            <pattern>прикол</pattern>
+        </patterns>
+        <answers>
+            <answer>эх...</answer>
+            <answer>:-P</answer>
+            <answer>да... :)</answer>
+            <answer>ха-ха-ха</answer>
+            <answer>хи-хи-хи</answer>
+            <answer>хе-хе-хе</answer>
+            <answer>угу :)</answer>
+            <answer>ага :-)</answer>
+            <answer>:)</answer>
+            <answer>8-0</answer>
+            <answer>8-)</answer>
+            <answer>здорово! 8*)</answer>
+            <answer>надо же!</answer>
+            <answer>:-)</answer>
+            <answer>вам кажется это забавным?</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>[;:8][ \-\=\+\*]?\(</pattern>
+            <pattern>:-\(</pattern>
+            <pattern>:\(</pattern>
+            <pattern>:\*\(</pattern>
+        </patterns>
+        <answers>
+            <answer>эх...</answer>
+            <answer>мда...</answer>
+            <answer>да...</answer>
+            <answer>все будет хорошо...</answer>
+            <answer>надо быть оптимистом</answer>
+            <answer>жизнь -- полоса белая, полоса черная</answer>
+            <answer>угу </answer>
+            <answer>угу :(</answer>
+            <answer>не все так полохо.</answer>
+            <answer>жизнь сложна, зато коротка ;)</answer>
+            <answer>а что же делать?</answer>
+        </answers>
+    </entry>
+
+    <!-- Общее утверждение -->
+    
+    <!-- Что-то не очень длинное -->
+    <entry priority="-2">
+        <patterns>
+            <pattern>^(.{3,8})$</pattern>
+        </patterns>
+        <answers>
+            <answer>$1$ ?</answer>
+            <answer>точно $1$</answer>
+            <answer>угу</answer>
+            <answer>ага</answer>
+            <answer>:)</answer>
+            <answer>8-0</answer>
+        </answers>
+    </entry>
+    
+    <!-- Длинная фраза не попавшая под шаблоны. 
+    Будем бубнить что-то невнятное в ответ -->
+    <entry priority="-2">
+        <patterns>
+            <pattern>.+</pattern>
+        </patterns>
+        <answers>
+            <answer>$numbers$</answer>
+            <answer>у меня $numbers$$numbers$</answer>
+            <answer>эх...</answer>
+            <answer>мда...</answer>
+            <answer>не понимаю...</answer>
+            <answer>:-P</answer>
+            <answer>чё?</answer>
+            <answer>тронутся можно</answer>
+            <answer>интересно</answer>
+            <answer>ничего не могу сказать</answer>
+            <answer>ну что тут сказать...</answer>
+            <answer>да...</answer>
+            <answer>я понимаю</answer>
+            <answer>угу</answer>
+            <answer>ага</answer>
+            <answer>:)</answer>
+            <answer>8-0</answer>
+            <answer>неужели?</answer>
+            <answer>всегда?</answer>
+            <answer>сомневаюсь</answer>
+            <answer>надо будет обдумать</answer>
+            <answer>а я сейчас думаю о другом</answer>
+            <answer>очень интересно</answer>
+            <answer>надо же</answer>
+            <answer>зачем вы мне это говорите?</answer>
+            <answer>вот ведь</answer>
+            <answer>ого!</answer>
+            <answer>правда?</answer>
+            <answer>берете на испуг?</answer>
+            <answer>глупости</answer>
+        </answers>
+    </entry>
+
+    <!-- Пустая строка -->
+    <entry>
+        <patterns>
+            <pattern>^\n*$</pattern>
+        </patterns>
+        <answers>
+            <answer>нечего сказать?</answer>
+            <answer> :) </answer>
+        </answers>
+    </entry>
+    
+</dictionary>
+        
+    

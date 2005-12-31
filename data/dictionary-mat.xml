@@ -1,0 +1,215 @@
+<?xml version = '1.0' encoding="utf-8"?>
+
+<!DOCTYPE dictionary [
+
+    <!ELEMENT dictionary (description?, entry*) >
+    <!ATTLIST dictionary version CDATA #REQUIRED>
+
+    <!ELEMENT description (author?, date?, comments?)>
+    <!ELEMENT author (#PCDATA)>
+    <!ELEMENT date (#PCDATA)>
+    <!ELEMENT comments (#PCDATA)>
+
+    <!ELEMENT entry (patterns, answers)>
+    <!ATTLIST entry priority CDATA #IMPLIED>
+
+    <!ELEMENT patterns (pattern+)>
+    
+    <!ELEMENT pattern (#PCDATA)>
+    <!ATTLIST pattern type (macro|exc) #IMPLIED>
+
+    <!ELEMENT answers (answer+)>
+    <!ELEMENT answer (#PCDATA)>
+]>
+
+<dictionary version="1.0">
+
+    <description>
+        <author>Dmitry Bodyonov, bodyonov*karelia.ru
+        </author>
+        <date>2005</date>
+        <comments>
+            Список составлял не я! Я таких слов даже и не знаю, 
+            тем более не смог бы их набирать. Взято с
+            http://runaway-girl.narod.ru/mat.html
+            и обработано в vim'е.
+        </comments>
+    </description>
+
+
+    <entry priority="101">                                                                    
+        <patterns>
+            <pattern>\b(bad-word-test)\b</pattern>
+            <pattern>\b(хуй)\b</pattern>
+            <pattern>\b(бля)\b</pattern>
+            <pattern>\b(плять)\b</pattern>
+            <pattern>\b(блядь)\b</pattern>
+            <pattern>\b(ебать)\b</pattern>
+            <pattern>\b(ебало)\b</pattern>
+            <pattern>\b(ебальник)\b</pattern>
+            <pattern>\b(ебать)\b</pattern>
+            <pattern>\b(ебаться)\b</pattern>
+            <pattern>\b(ебическая)\b</pattern>
+            <pattern>\b(ебло)\b</pattern>
+            <pattern>\b(еблом щелкать)\b</pattern>
+            <pattern>\b(поебать)\b</pattern>
+            <pattern>\b(шобла)\b</pattern>
+            <pattern>\b(выёбываться)\b</pattern>
+            <pattern>\b(долбоёб)\b</pattern>
+            <pattern>\b(дуроёб)\b</pattern>
+            <pattern>\b(ебанатик)\b</pattern>
+            <pattern>\b(ебанутый)\b</pattern>
+            <pattern>\b(ебаришка)\b</pattern>
+            <pattern>\b(ебать му)\b</pattern>
+            <pattern>\b(ебливая)\b</pattern>
+            <pattern>\b(ебукентий)\b</pattern>
+            <pattern>\b(ёбаный)\b</pattern>
+            <pattern>\b(ёбарь)\b</pattern>
+            <pattern>\b(ёбнутый)\b</pattern>
+            <pattern>\b(заёб)\b</pattern>
+            <pattern>\b(злоебучая)\b</pattern>
+            <pattern>\b(коноёбиться)\b</pattern>
+            <pattern>\b(мозгоёб)\b</pattern>
+            <pattern>\b(мудоёб)\b</pattern>
+            <pattern>\b(разъебай)\b</pattern>
+            <pattern>\b(худоёбина)\b</pattern>
+            <pattern>\b(взъёбка)\b</pattern>
+            <pattern>\b(доебаться)\b</pattern>
+            <pattern>\b(ебаторий)\b</pattern>
+            <pattern>\b(ебать)\b</pattern>
+            <pattern>\b(ебаться)\b</pattern>
+            <pattern>\b(ёбля)\b</pattern>
+            <pattern>\b(ёбанн?ый)\b</pattern>
+            <pattern>\b(заебать)\b</pattern>
+            <pattern>\b(заёбанн?ый)\b</pattern>
+            <pattern>\b(заебаться)\b</pattern>
+            <pattern>\b(настоебать)\b</pattern>
+            <pattern>\b(отъебаться)\b</pattern>
+            <pattern>\b(приебаться)\b</pattern>
+            <pattern>\b(проебаться)\b</pattern>
+            <pattern>\b(уебать)\b</pattern>
+            <pattern>\b(ебануть)\b</pattern>
+            <pattern>\b(ёбнуть)\b</pattern>
+            <pattern>\b(ёбнуться)\b</pattern>
+            <pattern>\b(ёбс)\b</pattern>
+            <pattern>\b(еблысь)\b</pattern>
+            <pattern>\b(наебнуться)\b</pattern>
+            <pattern>\b(до ебанн?ой матери)\b</pattern>
+            <pattern>\b(ебистика)\b</pattern>
+            <pattern>\b(ёбанн?ый)\b</pattern>
+            <pattern>\b(заебись\!)\b</pattern>
+            <pattern>\b(поебень)\b</pattern>
+            <pattern>\b(разёбанн?ый)\b</pattern>
+            <pattern>\b(выебать)\b</pattern>
+            <pattern>\b(проебать)\b</pattern>
+            <pattern>\b(разъебаться)\b</pattern>
+            <pattern>\b(уёбывать)\b</pattern>
+            <pattern>\b(блядь)\b</pattern>
+            <pattern>\b(блядки)\b</pattern>
+            <pattern>\b(блядовать)\b</pattern>
+            <pattern>\b(блядство)\b</pattern>
+            <pattern>\b(пизда)\b</pattern>
+            <pattern>\b(пизды)\b</pattern>
+            <pattern>\b(пизде)\b</pattern>
+            <pattern>\b(пизду)\b</pattern>
+            <pattern>\b(остопиздеть)\b</pattern>
+            <pattern>\b(пизда)\b</pattern>
+            <pattern>\b(пиздобратия)\b</pattern>
+            <pattern>\b(пиздой)\b</pattern>
+            <pattern>\b(пиздолет)\b</pattern>
+            <pattern>\b(пиздорванец)\b</pattern>
+            <pattern>\b(пиздорванка)\b</pattern>
+            <pattern>\b(пиздюлина)\b</pattern>
+            <pattern>\b(пиздюшник)\b</pattern>
+            <pattern>\b(распиздяй)\b</pattern>
+            <pattern>\b(выпиздеться)\b</pattern>
+            <pattern>\b(допиздеться)\b</pattern>
+            <pattern>\b(запиздеть)\b</pattern>
+            <pattern>\b(пиздеть)\b</pattern>
+            <pattern>\b(пиздёж)\b</pattern>
+            <pattern>\b(пиздануть)\b</pattern>
+            <pattern>\b(пиздобол)\b</pattern>
+            <pattern>\b(пиздун)\b</pattern>
+            <pattern>\b(пиздюк)\b</pattern>
+            <pattern>\b(попиздеть)\b</pattern>
+            <pattern>\b(распиздон)\b</pattern>
+            <pattern>\b(впиздячить)\b</pattern>
+            <pattern>\b(испиздить)\b</pattern>
+            <pattern>\b(пиздануть)\b</pattern>
+            <pattern>\b(пиздить)\b</pattern>
+            <pattern>\b(пиздошить)\b</pattern>
+            <pattern>\b(пизды)\b</pattern>
+            <pattern>\b(пизды)\b</pattern>
+            <pattern>\b(пиздюлей)\b</pattern>
+            <pattern>\b(пиздюли)\b</pattern>
+            <pattern>\b(отпиздить)\b</pattern>
+            <pattern>\b(напиздить)\b</pattern>
+            <pattern>\b(пиздить)\b</pattern>
+            <pattern>\b(попиздили)\b</pattern>
+            <pattern>\b(спиздить)\b</pattern>
+            <pattern>\b(выпиздить)\b</pattern>
+            <pattern>\b(пиздошить)\b</pattern>
+            <pattern>\b(пиздуй)\b</pattern>
+            <pattern>\b(пиздюрить)\b</pattern>
+            <pattern>\b(пиздюхать)\b</pattern>
+            <pattern>\b(попиздили)\b</pattern>
+            <pattern>\b(припиздить)\b</pattern>
+            <pattern>\b(пропиздить)\b</pattern>
+            <pattern>\b(упиздить)\b</pattern>
+            <pattern>\b(хуй)\b</pattern>
+            <pattern>\b(хуя)\b</pattern>
+            <pattern>\b(на хуя)\b</pattern>
+            <pattern>\b(нехуй)\b</pattern>
+            <pattern>\b(хуемь)\b</pattern>
+            <pattern>\b(хуёв)\b</pattern>
+            <pattern>\b(хуёвина)\b</pattern>
+            <pattern>\b(хуёвничать)\b</pattern>
+            <pattern>\b(хуями)\b</pattern>
+            <pattern>\b(хули)\b</pattern>
+            <pattern>\b(хуяк)\b</pattern>
+            <pattern>\b(охуенн?ый)\b</pattern>
+            <pattern>\b(охуенн?о)\b</pattern>
+            <pattern>\b(охуительный)\b</pattern>
+            <pattern>\b(хуеватенький)\b</pattern>
+            <pattern>\b(хуевато)\b</pattern>
+            <pattern>\b(хуета)\b</pattern>
+            <pattern>\b(хуетень)\b</pattern>
+            <pattern>\b(хуёво)\b</pattern>
+            <pattern>\b(хуёвый)\b</pattern>
+            <pattern>\b(хуё)\b</pattern>
+            <pattern>\b(хуйня)\b</pattern>
+            <pattern>\b(хуя)\b</pattern>
+            <pattern>\b(однохуйственн?о)\b</pattern>
+            <pattern>\b(хуеву)\b</pattern>
+            <pattern>\b(хуйню)\b</pattern>
+            <pattern>\b(вхуярить)\b</pattern>
+            <pattern>\b(захуярить)\b</pattern>
+            <pattern>\b(исхуячить)\b</pattern>
+            <pattern>\b(нахуяриться)\b</pattern>
+            <pattern>\b(охуячить)\b</pattern>
+            <pattern>\b(перехуярить)\b</pattern>
+            <pattern>\b(похуярили)\b</pattern>
+            <pattern>\b(прихуярить)\b</pattern>
+            <pattern>\b(расхуюжить)\b</pattern>
+            <pattern>\b(схуярить)\b</pattern>
+            <pattern>\b(хуйнуть)\b</pattern>
+            <pattern>\b(хуячить)\b</pattern>
+            <pattern>\b(хуебратия)\b</pattern>
+            <pattern>\b(хуеглот)\b</pattern>
+            <pattern>\b(хуегрыз)\b</pattern>
+            <pattern>\b(хуемырло)\b</pattern>
+            <pattern>\b(хуеплёт)\b</pattern>
+            <pattern>\b(хуила)\b</pattern>
+            <pattern type="exc">хулига</pattern>
+            <pattern type="exc">страхуй</pattern>
+        </patterns>
+        <answers>
+            <!--answer>censored = \b($1$)\b</answer-->
+            <answer>ну что вы ругаетесь как дите малое! ($1$)</answer>
+            <answer>не надо ругаться ($1$)</answer>
+            <answer>перестаньте ругаться ($1$)</answer>
+            <answer>кто вас научил ругаться? ($1$)</answer>
+            <answer>да вы знатный матершинник! ($1$)</answer>
+        </answers>
+    </entry>
+</dictionary>
