@@ -1,0 +1,19 @@
+<!ELEMENT dictionary (description?, entry*)>
+<!ATTLIST dictionary version CDATA #REQUIRED>
+
+<!ELEMENT description (author?, date?, comments?)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT comments (#PCDATA)>
+
+<!ELEMENT entry (patterns, answers)>
+<!ATTLIST entry priority CDATA #IMPLIED>
+<!ATTLIST entry name CDATA #IMPLIED>
+
+<!ELEMENT patterns (pattern+)>
+<!ELEMENT pattern (#PCDATA)>
+<!ATTLIST pattern type (macro|exc) #IMPLIED>
+
+<!ELEMENT answers (answer+)>
+<!ELEMENT answer (#PCDATA)>
+<!ATTLIST answer type (text|shell|eval) #IMPLIED>

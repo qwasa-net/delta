@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding="utf-8"?>
+
+<dictionary version="1.0">
+
+    <description>
+        <comments>test dictionary</comments>
+    </description>
+
+    <entry>
+        <patterns>
+            <pattern type="macro">number</pattern>
+        </patterns>
+        <answers>
+            <answer>1</answer>
+            <answer>2</answer>
+            <answer>7</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern type="macro">numbers</pattern>
+        </patterns>
+        <answers>
+            <answer>$number$$numbers$</answer>
+            <answer>$number$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>what time</pattern>
+        </patterns>
+        <answers>
+            <answer>$number$$number$:$number$$number$</answer>
+            <answer type="shell">/bin/date</answer>
+        </answers>
+    </entry>
+
+    <entry priority="10">
+        <patterns>
+            <pattern>2\+2</pattern>
+        </patterns>
+        <answers>
+            <answer>4, but sometimes $numbers$</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>(\d[\d\+]+)</pattern>
+        </patterns>
+        <answers>
+            <answer>$1$=$numbers$</answer>
+        </answers>
+    </entry>
+
+    <entry priority="-5">
+        <patterns>
+            <pattern>[a-z\s].*</pattern>
+        </patterns>
+        <answers>
+            <answer>hallo?</answer>
+        </answers>
+    </entry>
+
+    <entry priority="-4">
+        <patterns>
+            <pattern>^$</pattern>
+        </patterns>
+        <answers>
+            <answer>its quiet here…</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>+ )TEST ERROR PATTERN( do not fix!</pattern>
+        </patterns>
+        <answers>
+            <answer></answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>rm -rf /</pattern>
+        </patterns>
+        <answers>
+            <answer type="shell">/bin/date</answer>
+            <answer type="shell">/usr/bin/whoami</answer>
+        </answers>
+    </entry>
+
+    <entry>
+        <patterns>
+            <pattern>python code</pattern>
+        </patterns>
+        <answers>
+            <answer type="eval">len(__name__+__file__)</answer>
+            <answer type="eval">len(__name__)</answer>
+        </answers>
+    </entry>
+
+</dictionary>

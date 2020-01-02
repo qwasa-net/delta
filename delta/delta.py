@@ -1,599 +1,428 @@
-#!/usr/bin/python
-###########################################################################
-""" 
-delta, yet another answering machine. 
-
-Simple context-free algorithm is used to generate responses 
-for every input string. 
-
-delta usage example:
-    D = delta.delta()
-    D.LoadDictionary ('dictionary.xml')
-    print D.Parse ('hello, world!')
-
-
-(c) 2005 Dmitry Bodyonov bodyonov[*]karelia.ru
 """
-###########################################################################
+delta -- yet another answering machine
+a.k.a. Сверхъестественный интеллект или ёщё одна программа автоответчик
 
-try: import re
-except: print "Unable to import module 're'"; raise SystemExit
-try: import xml.sax
-except: print "Unable to import module 'xml.sax'"; raise SystemExit
-try: import random
-except: print "Unable to import module 'random'"; raise SystemExit
-try: import string
-except: print "Unable to import module 'string'"; raise SystemExit
+It implements super simple context-free regexps patterns matching algorithm.
 
-# debug level
-_DEBUG = 0
+Usage example:
 
-# User defined exceptions class
-###########################################################
-class _derror:
-    def __init__ (self, error=""):
-        self.error = error
-        
+    import delta
+    d = delta.Delta()
+    d.load_dictionary('dictionary.xml')
+    output = d.parse('hello, world!')
+    print(output)
 
+"""
+import random
+import re
+import xml.sax
+import subprocess
 
-# Dictionary entry.
-###########################################################
-# Every entry contains list of patterns and list of answers. 
-# All patterns are stored in compiled form to make searching 
-# faster.
-#
-# This class is used by delta.__MainDictionary.
-###########################################################
-class _DictionaryEntry:
-    """ Dictionary entry definition. """
-    
-    # Entry priority
-    __priority = 0
-    
-    # Set of good patterns and precompiled RE.
-    __patterns = []
-    __cmp_patterns = []
+__all__ = ["SHELL_ALLOWED", "DEBUG", "logger", "Delta"]
 
-    # Set of bad patterns.
-    __exceptions = []
-    __cmp_exceptions = []
+SHELL_ALLOWED = False
+DEBUG = False
+logger = None  # pylint: disable=invalid-name
 
-    # List of responses.
-    __responses = []
+SPACES_RE = re.compile(r"[ \t\n\r]+")
+MACROS_RE = re.compile(r"\$([a-zA-Z0-9_]+)\$")
 
 
-    #
-    ##################################################
-    def __init__ (self, Pat=[], Exc=[], Replies=[], Priority=0):
-        
-        self.__patterns = list(Pat)
-        self.__exceptions = list(Exc)
-        self.__responses = list(Replies)
-        
-        self.__priority = Priority
-        
-        self.__cmp_patterns = map (self.__RECompiler, self.__patterns)
-        self.__cmp_exceptions = map (self.__RECompiler, self.__exceptions)
-        
-
-    # re.compiler wrapper (all flags at one line)
-    ##################################################
-    def __RECompiler (self, Pattern):
-        # try to compile regular expressions
-        try:
-            return re.compile (Pattern, re.UNICODE) 
-        except:
-            if (_DEBUG>2): print "!!Error: bad regular expression = ", Pattern
-            pass
-                                                                
-
-    
-    ##################################################
-    def Print (self):
-        print self.__patterns[0]
-
-        
-    #
-    ##################################################
-    def Match (self, Input):
-        """ 
-        Method returns `match object` if input string matches at least 
-        one pattern from the main set of templates, and does not match 
-        any patterns from exclusion set. Otherwise None is returned.
-        """
-
-        # Match object
-        MInf = None
-
-        # Searching for good patterns
-        for i in xrange (len(self.__patterns)):
-
-            # very slow because patterns are compiled every call
-            #MInf = re.search (self.__patterns[i], Input, re.UNICODE)
-            
-            # faster version
-            MInf = self.__cmp_patterns[i].search (Input)
-
-            if (MInf != None):
-                if(_DEBUG>3): print "Matched: ", Input, "<<==>> '" + self.__patterns[i]  + "'"
-                break
-            else:
-                if(_DEBUG>4): 
-                    print "Failed: ", Input, "<<==>> '" + self.__cmp_patterns[i].pattern + "'"
-                    print map(ord, Input), "<<==>> ", map(ord,self.__cmp_patterns[i].pattern)
-
-        if (MInf == None) : return None
-
-        # Searching for exceptions
-        if len(self.__exceptions) > 0:
-            
-            for i in xrange (len(self.__exceptions)):
-                
-                if ( self.__cmp_exceptions[i].search (Input) != None ):
-                    if(_DEBUG>3): print "Dropped:", self.__exceptions[i]
-                    return None
-
-        return MInf
-
-    #
-    ##################################################
-    def PriorityComparator (self, other):
-        """ Compare priority of two entries. """
-        if self.__priority > other.__priority: return -1
-        elif self.__priority < other.__priority: return 1
-        return 0
-
-    #
-    ##################################################
-    def GetPatterns (self):
-        """ Method returns list of patterns """
-        return self.__patterns
-
-    #
-    ##################################################
-    def GetExceptions (self):
-        """ Method returns list of exceptions. """
-        return self.__exceptions
-
-    #
-    ##################################################
-    def GetResponses (self):
-        """ Method returns list of responses. """
-        return self.__responses
-
-    #
-    ##################################################
-    def SetPatterns (self, Pat=[]):
-        """ Set new list of patterns """
-        self.__patterns = list (Pat)
-        self.__cmp_patterns = map (self.__RECompiler, self.__patterns)
-
-    #
-    ##################################################
-    def SetExceptions (self, Exc=[]):
-        """ Set new list of exceptions """
-        self.__exceptions = list (Exc)
-        self.__cmp_exceptions = map (self.__RECompiler, self.__exceptions)
-
-    #
-    ##################################################
-    def SetPatterns (self, Rpl=[]):
-        """ Set new list of responses """
-        self.__responses = list (Rpl)
-
-
-
-#  Dictionary definition.  
-###########################################################
-# Dictionary := ( (pattern)+ , (answer)+ )+
-#
-# Class is used by main delta class
-###########################################################
-class _MainDictionary:
-    
-    # Dictionary Entries
-    __entries = []
-
-    
-    # Add new dictionary entry
-    ##################################################
-    def Append (self, Pat=[], Exc=[], Rpl=[], Pri=0):
-        self.__entries.append (_DictionaryEntry (Pat,Exc,Rpl, Pri))
-        return 
-
-    # Remove entry from dictionary
-    ##################################################
-    def Remove (self, Index):
-        pass
-        return 
-
-    # Sort list.
-    ##################################################
-    def Sort (self):
-        self.__entries.sort (_DictionaryEntry.PriorityComparator)
-        return 
-
-    #
-    ##################################################
-    def GetEntry (self, Index):
-        return self.__entries[Index]
-
-    
-    # Print dictionary contents
-    ##################################################
-    def Print (self):
-        print len(self.__entries), " items in the dictionary"
-        map (DictionaryEntry.Print, self.__entries)
-
-    
-    # Return number of entries
-    ##################################################
-    def Size (self):
-        return len(self.__entries)
-    
-    # Set _DEBUG mode
-    ##################################################
-    def SetDebugMode (self, mode):
-        global _DEBUG
-        _DEBUG += mode
-        return _DEBUG
-    
-    # Find appropriate entry.
-    ##################################################
-    def LookUp (self, Template):
-        
-        if(_DEBUG>1): print "Looking for ", Template
-        
-        for i in xrange (len(self.__entries)):
-            MObj =  self.__entries[i].Match (Template)
-            if MObj != None:
-                return (self.__entries[i], MObj)
-        
-        return (None,None)
-
-
-###########################################################
-# delta -- main class of the engine.
-#
-###########################################################
-class delta:
-
-    """ 
-    The main interface of the delta.
-
-    Public methods of the module:
-    
-    LoadDictionary (FILENAME)
-        Read dictionary from XML file. Method may raise an string 
-        exception when file cannot be parsed for some reason. Number of
-        loaded dictionary entries is returned on success.
-    
-    Parse(INPUT)
-         Generate answer for the string INPUT based on loaded 
-         dictionaries. INPUT must be an unicode string. Method
-         may raise an exception. 
-    
-    SetDebugMode (mode) 
-        Set log level, mode=0...5. When mode is >0, debug information
-        will be printed on the stdout.
-    
+class DictionaryEntry:
+    """
+    Dictionary entry:
+    Every entry contains a list of patterns and list of answers.
+    All patterns must be compiled before usage to make searching faster.
     """
 
-    # Initialization
-    def __init__ (self):
+    re_flags = re.UNICODE | re.IGNORECASE  # regexp compiler flags
 
-        # Create pattern for unecessary spaces used in _PreParsing
-        self.__SpacesPattern = re.compile (r"[ \t\n\r]+")
-        
-           
-    ##################################################
-    def LoadDictionary (self, FileName):
-        
-        """ 
-        Load dictionary from specified XML-file.  
-        Method returns non-zero value when error occure.
+    def __init__(self, patterns=None, answers=None,
+                 exclusions=None, priority=0):
+        """
+        Args:
+            patterns (list, optional): regexps for matching.
+            answers (list, optional): Answer objects.
+            exclusions (list, optional): regexps for exclusion in matching.
+            priority (int, optional): entry priority (used in dict sorting).
         """
 
-        try:
-           
-            # Handlers creation
-            XHandler = _XMLLoaderHandler()
-            XHandler.SetDict (self._dict)
+        # set of patterns and precompiled regexps
+        self.patterns = patterns or []
+        self.patterns_cmp = []
 
-            # Open input file
-            try: IFile = open (FileName, "r")
-            except:
-                if (_DEBUG): print "Unable to open", FileName
-                raise _derror ("Unable to read " + FileName)
+        # set of answers (strings with marcos)
+        self.answers = answers or []
+
+        # set of exclusion patterns and precompiled regexps
+        self.exclusions = exclusions or []
+        self.exclusions_cmp = []
+
+        # entry priority
+        self.priority = priority
+
+    def compile_patterns(self):
+        """ call compiler for all regexps (patterns and exclusions) """
+        self.patterns_cmp = [self.re_compiler(x) for x in self.patterns]
+        if self.exclusions:
+            self.exclusions_cmp = [self.re_compiler(x) for x in self.exclusions]
+
+    def re_compiler(self, pattern):
+        """ compile pattern and log errors """
+        try:
+            return re.compile(pattern, self.re_flags)
+        except Exception as exc:  # pylint: disable=broad-except
+            _log("error", "failed to compile pattern `%s`: %s", pattern, exc)
+
+    def __str__(self):
+        return "`{}`=>`{}` ({}:{})".format(self.patterns and self.patterns[0],
+                                           self.answers and self.answers[0],
+                                           len(self.patterns),
+                                           len(self.answers))
+
+    def match(self, inline):
+        """
+        Test input and return `entry match object` if:
+        - input string matches at least one pattern
+        - does not match any exclusion pattern.
+        Args:
+            inline (str): input string
+        Returns:
+            match object (re.Match object) or None
+        """
+
+        emo = None  # entry matching object
+
+        # searching for good patterns
+        for i, patt in enumerate(self.patterns_cmp):
+
+            if not patt:
+                continue
+
+            emo = patt.search(inline)
+
+            if emo is not None:
+                _log("debug", "matched: `%s` => `%s`", inline, self.patterns[i])
+                break
+
+        # nothing matched
+        if emo is None:
+            return None
+
+        # checking for exclusions
+        if self.exclusions:
+            for i, patt in enumerate(self.exclusions_cmp):
+                xmo = patt.search(inline)
+                if xmo is not None:
+                    _log("debug", "excluded: `%s` => `%s`", inline, self.exclusions[i])
+                    return None
+
+        return emo
+
+    def get_answer(self, safe=True, index=None):
+        """ gets random answer, returns text """
+        if index is not None and index < len(self.answers):
+            answer = self.answers[index]
+        else:
+            answer = random.choice(self.answers)
+        return answer.as_text(safe=safe)
+
+
+class Answer:
+    """
+    Answer from dictionary enntry.
+    Can be simple text or output of the shell command
+    or result of python eval (if SHELL_ALLOWED)
+    """
+
+    TEXT, EVAL, SHELL = 1, 2, 3
+    ACTION_TYPES = {"text": TEXT, "eval": EVAL, "shell": SHELL}
+    ACTION_TYPE_DEFAULT = TEXT
+
+    text = ""
+    action_type = ACTION_TYPE_DEFAULT
+
+    def __init__(self, text=None, action_type=None):
+        if text:
+            self.text = text
+        if action_type:
+            self.action_type = self.ACTION_TYPES.get(action_type,
+                                                     self.ACTION_TYPE_DEFAULT)
+
+    def run_shell(self):
+        """ runs a program (this feature is disabled by default) """
+        # pylint: disable=broad-except
+        output = ""
+        try:
+            # only command, no arguments, no return code check, stderr>>stdout
+            proc = subprocess.run([self.text, ], shell=False, check=False,
+                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            output = proc.stdout.decode("utf-8", errors="ignore")
+        except Exception as exc:
+            _log("error", "shell failed `%s`: %s", self.text, exc)
+        return output
+
+    def run_eval(self):
+        """ execute answer text as python code (this feature is disabled by default) """
+        # pylint: disable=eval-used,broad-except
+        output = ""
+        try:
+            output = str(eval(self.text))
+        except Exception as exc:
+            _log("error", "eval failed `%s`: %s", self.text, exc)
+        return output
+
+    def __str__(self):
+        return self.text
+
+    def as_text(self, safe=True):
+        """ do all the magic and return text value of the answer """
+        if self.action_type == self.SHELL and SHELL_ALLOWED and not safe:
+            return self.run_shell()
+        if self.action_type == self.EVAL and SHELL_ALLOWED and not safe:
+            return self.run_eval()
+        return self.text
+
+
+class Dictionary:
+    """
+    Dictionary is a collection of dictionary entries
+    """
+
+    def __init__(self):
+        self.entries = []  # dictionary entries
+
+    def append(self, entry, and_compile=True):
+        """ add new dictionary entry """
+        if and_compile:
+            entry.compile_patterns()
+        self.entries.append(entry)
+        _log("debug", "added entry %s", entry)
+
+    def sort(self):
+        """ sort entries list by priority """
+        self.entries.sort(key=lambda x: -x.priority)
+
+    def print(self):
+        """ print dictionary contents """
+        print(len(self.entries), " items in the dictionary")
+        print("\n".join((map(str, self.entries))))
+
+    def __len__(self):
+        """ return length of the dictionary """
+        return len(self.entries) if self.entries else 0
+
+    def lookup(self, inline):
+        """
+        For the given input line look up for matching entry in the dictionary.
+        Args:
+            inline (str): input line
+        Returns:
+            A tuple of entry and entry match object,
+            or (None, None) -- if nothing found.
+        """
+
+        for entry in self.entries:
+            emo = entry.match(inline)
+            if emo is not None:
+                return (entry, emo)
+
+        return (None, None)
+
+
+class Delta:
+    """
+    Answering machine engine
+    """
+
+    dictionary = None
+
+    MAX_PARSER_DEPTH = 25
+    EMPTY_RESPONSE = ""
+
+    def __init__(self):
+        """ Initializer has no arguments """
+        self.dictionary = Dictionary()
+
+    def load_dictionary(self, filename):
+        """
+        Load dictionary from XML file (new records appended to existing dictionary).
+        Args:
+            filename (str): XML file
+        Returns:
+            Total number of dictionary entries.
+        Raises:
+            Exception if the file cannot be opened or parsed.
+        """
+
+        with open(filename, "rb") as infile:
 
             # Set input file as a input stream for the parser
-            ISource = xml.sax.xmlreader.InputSource()
-            ISource.setByteStream(IFile)
-        
+            isource = xml.sax.xmlreader.InputSource()
+            isource.setByteStream(infile)
+
             # Parser creation
-            XParser = xml.sax.make_parser()
-            XParser.setContentHandler(XHandler)
-        
-            # XML-file parsing
-            XParser.parse(ISource)
-            
-            IFile.close()
+            xparser = xml.sax.make_parser()
 
-        except _derror, d:  raise d.error
+            xhandler = DeltaDictionaryXMLHandler(self.dictionary)
+            xparser.setContentHandler(xhandler)
 
-        except:        
-            if (_DEBUG): print "XML parsing error"
-            raise "XML parsing error"
+            xparser.parse(isource)
 
-        # Reorder dictionary entries using priority flag.
-        self._dict.Sort()
+        # Reorder dictionary entries by priority flag.
+        self.dictionary.sort()
 
-        return self._dict.Size() 
-    
-    
-    ##################################################
-    def SaveDictionary (self, FileName):
-        """ 
-        Save dictionary into XML-file. 
-        WARNING: Not Implemented Yet.
+        _log("info", "loaded dictionary %s (%s)", filename, len(self.dictionary))
+        return len(self.dictionary)
+
+    def save_dictionary(self, filename):
         """
-        self._dict.Print()
-        print "WARNING: method delta.SaveDictionary() is not implemented yet."
-        return 
+        Save dictionary into XML-file. FIXME: NIY!
+        """
+        self.dictionary.print()
+        raise NotImplementedError(__file__ + __name__)
 
-    
-    ##################################################
-    def Print (self):
-        self._dict.Print()
-        return 
-
-
-    ##################################################
-    def SetDebugMode (self, mode):
-        global _DEBUG 
-        _DEBUG += mode
-        if (_DEBUG>1): self._dict.SetDebugMode(mode-1)
-        return _DEBUG
-
-
-
-    ##################################################
-    def Parse (self, Input):
+    def parse(self, inline, depth=0):
         """
         Parse input line and generate the answer.
+        Args:
+            inline (str): input string.
+        Returns:
+            A string with answer.
+        Raises:
+            An Exception in case of error (any type)
         """
-        
-        # To avoid infinite looping we will count reccurent instances.
-        self.__pardepth +=1
-        if (self.__pardepth > self.MAX_PARSER_DEPTH):
-            if (_DEBUG) : print "That is too deep recurrence."
-            self.__pardepth -= 1
-            return ""
 
-        # Make some preparations 
-        Input = self._PreParsing (Input)
-        
-        # Searching for 'good' variant   
-        (Response, MatchObject) = self._dict.LookUp(Input)
-        
-        if (_DEBUG): print "LookUp", Input, " === >>>", Response
+        if depth > self.MAX_PARSER_DEPTH:  # avoid infinite looping
+            _log("warning", "I went too deep (%s)", depth)
+            return self.EMPTY_RESPONSE
 
-        # Answer postprocessing
-        Result = self._PostParsing(Input, MatchObject, Response)
+        # clean input
+        inline = SPACES_RE.sub(" ", inline.lower().strip())
 
-        self.__pardepth -= 1
-        
-        return Result
-    
+        # search for matching dictionary entry
+        (entry, emo) = self.dictionary.lookup(inline)
+        _log("debug", "looked up for `%s` => %s", inline, entry)
 
-    ##################################################
-    def _PostParsing (self, Input, MatchObject, Response):
-        """ 
-        Post processing.
-        At the first step response is selected randomly from the list
-        of possible responses for the matched pattern. Then all 
-        macros inside response are expanded in recurrent manner.
+        # postprocess answer
+        answer = self.process_answer(emo, entry, depth)
+        _log("debug", "parsed answer: `%s`", answer)
+
+        return answer
+
+    def process_answer(self, emo, entry, depth):
         """
-        
-        if Response == None :
-            return " <<< Nothing appropriate :( >>> "
-        
-        # Get any response.
-        SelectedResponse = random.choice(Response.GetResponses())
+        Entry answer processing.
+        At the first step answer is selected randomly from the list
+        of possible answers for the matched pattern.
+        Then, all macros inside the answer are expanded (recursively).
+        """
 
-        if _DEBUG>1: 
-            for i in Response.GetResponses():
-                print " Possible answer: " , i
-                
-        if _DEBUG: print " Selected answer: " , SelectedResponse
-            
+        if entry is None or emo is None:
+            return self.EMPTY_RESPONSE
 
-        # Looking for marcos in the text. Every macro starts and ends 
-        # with the '$' sign. (e.g. '$macro$'). Expansion rules are stored 
-        # in the main dictionary. All macros are expansed in a reccurent 
+        # Get a random answer from the list.
+        answer = entry.get_answer(safe=(not SHELL_ALLOWED))
+
+        # Looking for marcos in the text. Every macro starts and ends
+        # with the '$' sign. (e.g. '$macro$'). Expansion rules are stored
+        # in the main dictionary. All macros are expansed in a reccurent
         # manner, so they may have other macros inside.
         #
         # Special macros $1$, $2$ ... -- will be replaced with substrings
         # groupped in the regular expression pattern.
-        # 
-        # If dollar-sign '$' is needed in text it should be written 
-        # as two symbols -- '$$'.
-        
-        
-        pos = 0
-        GeneratedResponse = u""
-        
-        while 1:
+        #
+        # If dollar-sign '$' is needed in text it should be written
+        # as three symbols -- '$$$'.
 
-            # Searching for beginning of macro
-            spos = SelectedResponse.find ("$", pos)
-            
-            # If '$' is not found, then just copy the rest
-            # of the string to the result.
-            if spos < 0:
-                if (_DEBUG): print "PostProcessing: macros not found"
-                GeneratedResponse += SelectedResponse[pos:]
-                break
+        def _marco_parser(macromo, emo=emo):
+            macro_name = macromo.group(1)
+            if macro_name.isdigit():  # $1$
+                i = int(macro_name)
+                if i <= len(emo.groups()):
+                    return emo.group(i)
+                return self.EMPTY_RESPONSE
+            if macro_name == "$":  # $$$
+                return "$"
+            _log("debug", "expading macro `%s`", macro_name)
+            macro_expanded = self.parse("${}$".format(macro_name), depth + 1)
+            return macro_expanded
 
-            # Searching for the end mark
-            epos = SelectedResponse.find ("$", spos+1)
+        # magically replace all macros with
+        answer_expanded = MACROS_RE.sub(_marco_parser, answer)
 
-            # Skip endless macro name.
-            if spos < 0:
-                GeneratedResponse += SelectedResponse[pos:]
-                break
+        return answer_expanded
 
-            # Double bucks
-            if epos-spos == 1:
-                GeneratedResponse += SelectedResponse[pos:spos] 
-                GeneratedResponse += "$"
-                pos = epos + 1
-                continue
-                
-            # Add string before macro to the final result.
-            GeneratedResponse += SelectedResponse[pos:spos]
-            
-            # Macros with digital names are replaeced with the 
-            # groupped parts of the input string.
-            if string.digits.find(SelectedResponse[spos+1:epos]) > -1:
-                try:
-                    GeneratedResponse += MatchObject.group(int(SelectedResponse[spos+1:epos]))
-                except:
-                    if _DEBUG: print "Undefined group :", SelectedResponse[spos+1:epos]
-                    
-                pos = epos + 1
-                continue
-                                            
-            if (_DEBUG): print "Macro expansion: ", pos, spos, epos, "'", SelectedResponse[spos:epos+1] , "'"
 
-            # Calling main parser for the macro expansion.
-            Expansion = self.Parse (SelectedResponse[spos:epos+1])
+class DeltaDictionaryXMLHandler(xml.sax.handler.ContentHandler):
+    """ Content handlers for XML loader """
 
-            # Result of the macro expansion is added to the final string.
-            GeneratedResponse += Expansion
-            
-            if (_DEBUG): print "'", SelectedResponse[spos:epos+1],  "'  ==>>", Expansion
+    text = ""  # current element text content
+    element_type = None  # current element type attribite
 
-            pos = epos + 1
+    def __init__(self, dictionary):
+        self.dictionary = dictionary
+        self.entry = None
+        super().__init__()
 
-        return GeneratedResponse
-                
-    
-        
-    ##################################################
-    def _PreParsing (self, Input):
-        """ Input line pre-processing. 
-        All characters are converted to lowercase and 
-        unnecessary spaces are removed."""
+    # <element>
+    def startElement(self, name, attrs):
 
-        # Use lower case
-        Input = Input.lower().strip()
+        if name == "entry":  # new entry
+            self.entry = DictionaryEntry()
+            priority = attrs.get('pri', attrs.get('priority', 0))
+            self.entry.priority = _int(priority)
 
-        # Remove duplicated spaces
-        #Input = re.sub ("[ \t\n\r]+", " ", Input)
-        Input = self.__SpacesPattern.sub (" ", Input)
+        elif name in ["pattern", "answer"]:
+            self.element_type = attrs.get('type')
 
-        return Input
-    
-        
-    # Main dictionary 
-    _dict = _MainDictionary()
+    # </element>
+    def endElement(self, name):
 
-    # Parser depth count
-    __pardepth = 0
-    MAX_PARSER_DEPTH = 25
-   
+        if name == "entry":  # end of the entry — save it to dictionary
+            self.dictionary.append(self.entry)
 
-# XML loader handlers
-###########################################################
-# This class implements XML parser handlers for LoadDictionary
-# method of the delta class.
-###########################################################
-class _XMLLoaderHandler(xml.sax.handler.ContentHandler):
-    """ Content handlers for xml loader """
+        elif name == "pattern":  # pattern
 
-    _CurrentNode = ""
-    _CurrentText = ""
-    _Priority = 0
-    _Patterns = []
-    _Exceptions = []
-    _Answers = []
-    
-    def SetDict (self, Dict):
-        self._dict = Dict
+            text = self.text.strip()
 
-    # Beginning of the new tag.
-    def startElement (self, Name, Attr):
-        
-        if Name == "entry":
+            if self.element_type == "macro":
+                self.entry.patterns.append("\\${}\\$".format(text))
 
-            self._Patterns = []
-            self._Answers = []
-            self._Exceptions = []
-            self._Priority = 0
-            
-            if Attr.has_key("pri"):
-                self._Priority = int(Attr["pri"])
-       
-            if Attr.has_key("priority"):
-                self._Priority = int(Attr["priority"])
-                        
-        if Name == "pattern" and Attr.has_key("type"):
-            self._PaType = Attr["type"]
-        else:
-            self._PaType = ""
-        
-        return
+            elif self.element_type in ["exculsion", "exception", "exc"]:
+                self.entry.exclusions.append(text)
 
-    # End of the tag was found.
-    def endElement (self, Name):
-        
-        # End of the entry, 
-        if Name == "entry":
-            
-            self._dict.Append(self._Patterns, self._Exceptions, self._Answers,  self._Priority) 
-            if (_DEBUG>2):
-                try:
-                    print "Entry:", len(self._Patterns), "patterns,", self._Patterns[0], \
-                            " / ", len(self._Answers),  "answers,", self._Answers[0]
-                except:
-                    pass
-            
-            self._Patterns = []
-            self._Answers = []
-            self._Exceptions = []
-            self._Priority = 0
+            else:
+                self.entry.patterns.append(text)
 
-        # Pattern for keywords.
-        elif Name == "pattern":
-            
-            if _DEBUG>3: print "   pattern found=", self._CurrentText.strip()
+        elif name == "answer":  # possible answer for the pattern
 
-            # 
-            self._CurrentText = self._CurrentText.strip()
-            
-            if self._PaType == "":
-                self._Patterns.append (self._CurrentText)
-            
-            elif self._PaType == "macro":
-                 self._Patterns.append ( "\$" + self._CurrentText + "\$" )
-            
-            elif self._PaType == "exculsion" or self._PaType == "exception" or self._PaType == "exc":
-                self._Exceptions.append (self._CurrentText)
-        
-        # Possible response for the pattern
-        elif Name == "answer":
-            self._Answers.append (self._CurrentText.strip())
-        
-        # Clean up for the next element.
-        self._CurrentText = ""
-        
-        return
+            text = self.text.strip()
+            answer = Answer(text=text, action_type=self.element_type)
+            self.entry.answers.append(answer)
 
-    # Save text between tags.
-    def characters (self, Text):
-        self._CurrentText += Text
-        
+        # clean up for the next element
+        self.text = ""
 
-# 
+    def characters(self, content):
+        self.text += content  # save element text content
 
+
+def _log(level, msg, *args, **kwargs):
+    """ logging helper """
+    if logger is not None:
+        if level in ["error", "warning"]:
+            logger.error(msg, *args, **kwargs)
+        elif level == "info" and DEBUG:
+            logger.info(msg, *args, **kwargs)
+        elif DEBUG:
+            logger.debug(msg, *args, **kwargs)
+
+
+def _int(i, fallback=0):
+    """ int helper """
+    # pylint: disable=broad-except
+    try:
+        return int(i)
+    except BaseException:
+        return fallback
