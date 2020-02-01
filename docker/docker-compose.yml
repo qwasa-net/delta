@@ -1,0 +1,5 @@
+delta_simple_tcpserver:
+    build: ../
+    dockerfile: docker/simple_tcpserver.dockerfile
+    ports:
+      - "17777:17777"

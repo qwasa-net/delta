@@ -1,0 +1,24 @@
+image: python:latest
+
+variables:
+  PYTHONPATH: "."
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+    - _env
+
+before_script:
+  - python --version
+  - make --version
+  - make env
+
+test:
+  script:
+    - make test
+    - make test_commander
+
+lint:
+  script:
+    - make pylint
