@@ -1,0 +1,30 @@
+[Unit]
+Description=Delta Beta Telegram Bot
+
+[Service]
+Type=forking
+Restart=always
+RestartSec=20
+
+User=delta
+Group=delta
+
+StandardOutput=file:/home/delta/delta.log
+StandardError=file:/home/delta/delta.log
+
+WorkingDirectory=/home/delta/delta/
+PIDFile=/home/delta/_delta.pid
+Environment=PYTHONPATH=.
+EnvironmentFile=/home/delta/.env
+ExecStart=/home/delta/delta/_env/bin/python3 \
+clients/tgbot.py \
+data/dictionary-russian.xml \
+--api-token \"${TG_API_TOKEN}\" \
+--webhook-url \"${TG_WEBHOOK_URL}\" \
+--max-workers 2 \
+--verbose \
+--host 127.0.0.1 --port 8080
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+Alias=delta-beta-bot.service

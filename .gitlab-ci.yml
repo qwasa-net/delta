@@ -10,6 +10,7 @@ cache:
     - _env
 
 before_script:
+  - apt-get update -qq && apt-get install -y -qq nc
   - python --version
   - make --version
   - make env
@@ -18,6 +19,7 @@ test:
   script:
     - make test
     - make test_commander
+    - make test_tcpserver
 
 lint:
   script:
