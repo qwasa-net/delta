@@ -1,0 +1,18 @@
+[Unit]
+Description=Delta Beta Telegram Bot (podman)
+After=nginx.service
+
+[Service]
+Restart=always
+RestartSec=5
+
+# 'loginctl enable-linger [USER...]' … If enabled for a specific user, 
+# a user manager is spawned for the user at boot and kept around after logouts.
+# This allows users who are not logged in to run long-running services.
+ExecStartPre=/bin/loginctl enable-linger delta.qwasa.net
+
+ExecStart=sudo -u delta.qwasa.net /usr/bin/podman start -a delta_tgbot
+ExecStop=sudo -u delta.qwasa.net /usr/bin/podman stop -t 2 delta_tgbot
+
+[Install]
+WantedBy=default.target

@@ -2,7 +2,7 @@
 
 ## a.k.a. Сверхъестественный интеллект или ёщё одна программа автоответчик
 
-It implements super simple context-free regexps patterns matching algorithm.
+Super simple implementation of context-free regexps patterns matching algorithm.
 
 No Machine Learning Algorithms or Neural Networks were harmed in the process.
 
@@ -42,3 +42,5 @@ Dictionary format:
 ```
 
 Directory `data` contains some sample dictionaries, e.g. `dictionary-test.xml`.
+
+Test bot: tg://delta_beta_bot
