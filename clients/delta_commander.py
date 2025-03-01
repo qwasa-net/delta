@@ -1,12 +1,13 @@
 """
 delta demo -- command line client and tiny server
 """
+
 import argparse
 import logging
+import re
 import select
 import socket
 import sys
-import re
 
 from delta import delta
 
@@ -15,15 +16,17 @@ SERVER_INPUT_MAXSIZE = 1024 * 1
 
 
 def set_debugger(debug=False):
-    """ setup debugger """
-    logging.basicConfig(stream=sys.stderr,
-                        level=logging.DEBUG if debug else logging.INFO,
-                        format="%(levelname)s %(module)s: %(message)s")
+    """setup debugger"""
+    logging.basicConfig(
+        stream=sys.stderr,
+        level=logging.DEBUG if debug else logging.INFO,
+        format="%(levelname)s %(module)s: %(message)s",
+    )
     return logging.getLogger("delta")
 
 
 def init_delta(dicts):
-    """" create delta instance and load dictionaries """
+    """ " create delta instance and load dictionaries"""
 
     engine = delta.Delta()
     for dct in dicts:
@@ -36,25 +39,25 @@ def init_delta(dicts):
 
 
 def say_to_me(engine, inline, print_in_out=True):
-    """ say one line """
+    """say one line"""
 
     say = engine.parse(inline)
 
     if print_in_out:
-        output = "> {}\n< {}\n".format(inline, say)
+        output = f"> {inline}\n< {say}\n"
         print(output)
     else:
         print(say)
 
 
 def talk_to_me(engine):
-    """ read lines from input and then say something back """
+    """read lines from input and then say something back"""
 
     while True:
 
         try:
             inline = input("> ")
-            inline = re.sub(r'[ \r\t\n]+', ' ', inline).strip()
+            inline = re.sub(r"[ \r\t\n]+", " ", inline).strip()
         except (EOFError, KeyboardInterrupt) as _:
             print()
             break
@@ -94,14 +97,14 @@ def run_server(engine, server_params, limit=10**10):
 
 
 def handle_client(server, engine):
-    """ wait for client, read input, process, reply and then exit """
+    """wait for client, read input, process, reply and then exit"""
 
     # wait here for the client (blocking call)
     client, client_address = server.accept()
     logging.info("server got new connection: %s", client_address)
 
     # block again until data is posted or timeout occured
-    selset = select.select([client, ], [], [], SERVER_READ_TIMEOUT)
+    selset = select.select([client], [], [], SERVER_READ_TIMEOUT)
 
     if len(selset[0]) == 0:  # nothing to read
         logging.error("socket reading timeout (%ss)", SERVER_READ_TIMEOUT)
@@ -111,7 +114,7 @@ def handle_client(server, engine):
         data = client.recv(SERVER_INPUT_MAXSIZE)
 
         inline = data.decode("utf-8", errors="ignore")
-        inline = re.sub(r'[ \r\t\n]+', ' ', inline).strip()
+        inline = re.sub(r"[ \r\t\n]+", " ", inline).strip()
         logging.info("> %s", inline)
 
         if inline:
@@ -130,20 +133,18 @@ def main():
     - starts dialog
     """
 
-    parser = argparse.ArgumentParser(description='delta commandline interface')
-    parser.add_argument('--verbose', '-v', action='store_true', default=False,
-                        help="show some stats")
-    parser.add_argument('--debug', '-d', action='store_true', default=False,
-                        help="print debug info")
-    parser.add_argument('--allow-shell', action='store_true', default=False,
-                        help="allow delta to run SHELL and EVAL")
-    parser.add_argument('--say', '-s', nargs=1, metavar="YOUSAY",
-                        help='use this phrase from command line')
-    parser.add_argument('--tcpserver', '-t', nargs=2, metavar=('HOST', 'PORT'),
-                        help='start simple TCP server')
-    parser.add_argument('--tcpserver-limit', type=int, default=10**10)
-    parser.add_argument('dictionary', nargs='+',
-                        help='load XML dictionary')
+    parser = argparse.ArgumentParser(description="delta commandline interface")
+    parser.add_argument("--verbose", "-v", action="store_true", default=False, help="show some stats")
+    parser.add_argument("--debug", "-d", action="store_true", default=False, help="print debug info")
+    parser.add_argument(
+        "--allow-shell", action="store_true", default=False, help="allow delta to run SHELL and EVAL"
+    )
+    parser.add_argument("--say", "-s", nargs=1, metavar="YOUSAY", help="use this phrase from command line")
+    parser.add_argument(
+        "--tcpserver", "-t", nargs=2, metavar=("HOST", "PORT"), help="start simple TCP server"
+    )
+    parser.add_argument("--tcpserver-limit", type=int, default=10**10)
+    parser.add_argument("dictionary", nargs="+", help="load XML dictionary")
     args = parser.parse_args()
 
     # set up debugging

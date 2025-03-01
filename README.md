@@ -2,11 +2,14 @@
 
 ## a.k.a. Сверхъестественный интеллект или ёщё одна программа автоответчик
 
-Super simple implementation of context-free regexps patterns matching algorithm.
+<img src="misc/delta-icon-512x512.png" alt="imperfect delta logo" width="200" />
 
+Super simple implementation of context-free regexps patterns matching algorithm.\
 No Machine Learning Algorithms or Neural Networks were harmed in the process.
 
-Usage example:
+-------
+
+### Usage example:
 
 ```python
     import delta
@@ -15,8 +18,9 @@ Usage example:
     output = d.parse('hello, world!')
     print(output)
 ```
+-------
 
-Dictionary format:
+### Dictionary format:
 
 ```xml
 <dictionary version="1.0">
@@ -43,4 +47,5 @@ Dictionary format:
 
 Directory `data` contains some sample dictionaries, e.g. `dictionary-test.xml`.
 
-Test bot: tg://delta_beta_bot
+### Live demo:
+tg://delta_beta_bot

@@ -13,12 +13,13 @@ Usage example:
     print(output)
 
 """
+
 import random
 import re
-import xml.sax
 import subprocess
+import xml.sax
 
-__all__ = ["SHELL_ALLOWED", "DEBUG", "logger", "Delta"]
+__all__ = ["DEBUG", "SHELL_ALLOWED", "Delta", "logger"]
 
 SHELL_ALLOWED = False
 DEBUG = False
@@ -37,8 +38,7 @@ class DictionaryEntry:
 
     re_flags = re.UNICODE | re.IGNORECASE  # regexp compiler flags
 
-    def __init__(self, patterns=None, answers=None,
-                 exclusions=None, priority=0):
+    def __init__(self, patterns=None, answers=None, exclusions=None, priority=0):
         """
         Args:
             patterns (list, optional): regexps for matching.
@@ -62,23 +62,23 @@ class DictionaryEntry:
         self.priority = priority
 
     def compile_patterns(self):
-        """ call compiler for all regexps (patterns and exclusions) """
+        """call compiler for all regexps (patterns and exclusions)"""
         self.patterns_cmp = [self.re_compiler(x) for x in self.patterns]
         if self.exclusions:
             self.exclusions_cmp = [self.re_compiler(x) for x in self.exclusions]
 
     def re_compiler(self, pattern):
-        """ compile pattern and log errors """
+        """compile pattern and log errors"""
         try:
             return re.compile(pattern, self.re_flags)
         except Exception as exc:  # pylint: disable=broad-except
             _log("error", "failed to compile pattern `%s`: %s", pattern, exc)
 
     def __str__(self):
-        return "`{}`=>`{}` ({}:{})".format(self.patterns and self.patterns[0],
-                                           self.answers and self.answers[0],
-                                           len(self.patterns),
-                                           len(self.answers))
+        return (
+            f"`{self.patterns and self.patterns[0]}`=>`{self.answers and self.answers[0]}`"
+            f" ({len(self.patterns)}:{len(self.answers)})"
+        )
 
     def match(self, inline):
         """
@@ -120,7 +120,7 @@ class DictionaryEntry:
         return emo
 
     def get_answer(self, safe=True, index=None):
-        """ gets random answer, returns text """
+        """gets random answer, returns text"""
         if index is not None and index < len(self.answers):
             answer = self.answers[index]
         else:
@@ -146,24 +146,28 @@ class Answer:
         if text:
             self.text = text
         if action_type:
-            self.action_type = self.ACTION_TYPES.get(action_type,
-                                                     self.ACTION_TYPE_DEFAULT)
+            self.action_type = self.ACTION_TYPES.get(action_type, self.ACTION_TYPE_DEFAULT)
 
     def run_shell(self):
-        """ runs a program (this feature is disabled by default) """
+        """runs a program (this feature is disabled by default)"""
         # pylint: disable=broad-except
         output = ""
         try:
             # only command, no arguments, no return code check, stderr>>stdout
-            proc = subprocess.run([self.text, ], shell=False, check=False,
-                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            proc = subprocess.run(
+                [self.text],
+                shell=False,
+                check=False,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            )
             output = proc.stdout.decode("utf-8", errors="ignore")
         except Exception as exc:
             _log("error", "shell failed `%s`: %s", self.text, exc)
         return output
 
     def run_eval(self):
-        """ execute answer text as python code (this feature is disabled by default) """
+        """execute answer text as python code (this feature is disabled by default)"""
         # pylint: disable=eval-used,broad-except
         output = ""
         try:
@@ -176,7 +180,7 @@ class Answer:
         return self.text
 
     def as_text(self, safe=True):
-        """ do all the magic and return text value of the answer """
+        """do all the magic and return text value of the answer"""
         if self.action_type == self.SHELL and SHELL_ALLOWED and not safe:
             return self.run_shell()
         if self.action_type == self.EVAL and SHELL_ALLOWED and not safe:
@@ -193,23 +197,23 @@ class Dictionary:
         self.entries = []  # dictionary entries
 
     def append(self, entry, and_compile=True):
-        """ add new dictionary entry """
+        """add new dictionary entry"""
         if and_compile:
             entry.compile_patterns()
         self.entries.append(entry)
         _log("debug", "added entry %s", entry)
 
     def sort(self):
-        """ sort entries list by priority """
+        """sort entries list by priority"""
         self.entries.sort(key=lambda x: -x.priority)
 
     def print(self):
-        """ print dictionary contents """
+        """print dictionary contents"""
         print(len(self.entries), " items in the dictionary")
-        print("\n".join((map(str, self.entries))))
+        print("\n".join(map(str, self.entries)))
 
     def __len__(self):
-        """ return length of the dictionary """
+        """return length of the dictionary"""
         return len(self.entries) if self.entries else 0
 
     def lookup(self, inline):
@@ -241,7 +245,7 @@ class Delta:
     EMPTY_RESPONSE = ""
 
     def __init__(self):
-        """ Initializer has no arguments """
+        """Initializer has no arguments"""
         self.dictionary = Dictionary()
 
     def load_dictionary(self, filename):
@@ -345,7 +349,7 @@ class Delta:
             if macro_name == "$":  # $$$
                 return "$"
             _log("debug", "expading macro `%s`", macro_name)
-            macro_expanded = self.parse("${}$".format(macro_name), depth + 1)
+            macro_expanded = self.parse(f"${macro_name}$", depth + 1)
             return macro_expanded
 
         # magically replace all macros with
@@ -355,7 +359,7 @@ class Delta:
 
 
 class DeltaDictionaryXMLHandler(xml.sax.handler.ContentHandler):
-    """ Content handlers for XML loader """
+    """Content handlers for XML loader"""
 
     text = ""  # current element text content
     element_type = None  # current element type attribite
@@ -370,11 +374,11 @@ class DeltaDictionaryXMLHandler(xml.sax.handler.ContentHandler):
 
         if name == "entry":  # new entry
             self.entry = DictionaryEntry()
-            priority = attrs.get('pri', attrs.get('priority', 0))
+            priority = attrs.get("pri", attrs.get("priority", 0))
             self.entry.priority = _int(priority)
 
         elif name in ["pattern", "answer"]:
-            self.element_type = attrs.get('type')
+            self.element_type = attrs.get("type")
 
     # </element>
     def endElement(self, name):
@@ -387,7 +391,7 @@ class DeltaDictionaryXMLHandler(xml.sax.handler.ContentHandler):
             text = self.text.strip()
 
             if self.element_type == "macro":
-                self.entry.patterns.append("\\${}\\$".format(text))
+                self.entry.patterns.append(f"\\${text}\\$")
 
             elif self.element_type in ["exculsion", "exception", "exc"]:
                 self.entry.exclusions.append(text)
@@ -409,7 +413,7 @@ class DeltaDictionaryXMLHandler(xml.sax.handler.ContentHandler):
 
 
 def _log(level, msg, *args, **kwargs):
-    """ logging helper """
+    """logging helper"""
     if logger is not None:
         if level in ["error", "warning"]:
             logger.error(msg, *args, **kwargs)
@@ -420,7 +424,7 @@ def _log(level, msg, *args, **kwargs):
 
 
 def _int(i, fallback=0):
-    """ int helper """
+    """int helper"""
     # pylint: disable=broad-except
     try:
         return int(i)

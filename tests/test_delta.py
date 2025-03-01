@@ -1,4 +1,5 @@
-""" delta basic tests """
+"""delta basic tests"""
+
 import logging
 import sys
 import unittest
@@ -11,7 +12,7 @@ logging.basicConfig(stream=sys.stderr, level=logging.INFO, format="%(message)s")
 
 
 class TestDelta(unittest.TestCase):
-    """ Test delta basic functions """
+    """Test delta basic functions"""
 
     delta = None
 
@@ -21,7 +22,7 @@ class TestDelta(unittest.TestCase):
         self.delta = delta.Delta()
 
     def test_01_empty_dictionary(self):
-        """ test empty set """
+        """test empty set"""
         # empty dictionary
         self.assertEqual(len(self.delta.dictionary), 0)
         self.delta.EMPTY_RESPONSE = "?"
@@ -31,7 +32,7 @@ class TestDelta(unittest.TestCase):
         self.assertEqual(say, "?")
 
     def test_02_add_dictionary(self):
-        """ test empty set """
+        """test empty set"""
         # empty dictionary
         self.assertEqual(len(self.delta.dictionary), 0)
         self.delta.EMPTY_RESPONSE = "?"
@@ -55,7 +56,7 @@ class TestDelta(unittest.TestCase):
         self.assertEqual(self.delta.parse("ok, ciao ;) !"), "cu")
 
     def test_10_load_dictionary(self):
-        """ test loading demo dictionary """
+        """test loading demo dictionary"""
 
         # empty dictionary
         self.assertEqual(len(self.delta.dictionary), 0)
@@ -65,7 +66,7 @@ class TestDelta(unittest.TestCase):
         self.assertTrue(len(self.delta.dictionary) > 0)
 
     def test_11_load_bad_dictionary(self):
-        """ test loading nonexistent dictionary """
+        """test loading nonexistent dictionary"""
 
         # empty dictionary
         self.assertEqual(len(self.delta.dictionary), 0)
@@ -80,7 +81,7 @@ class TestDelta(unittest.TestCase):
         self.assertEqual(excepted, True)
 
     def test_20_say_something(self):
-        """ test that delta does reply with something """
+        """test that delta does reply with something"""
 
         self.test_10_load_dictionary()
 
@@ -102,7 +103,7 @@ class TestDelta(unittest.TestCase):
         self.assertTrue(say_numbers.isdigit())
 
     def test_30_run_some_code_disabled(self):
-        """ test that delta runs a code when SHELL disabled """
+        """test that delta runs a code when SHELL disabled"""
 
         self.test_10_load_dictionary()
 
@@ -119,7 +120,7 @@ class TestDelta(unittest.TestCase):
         self.assertTrue("__name__" in say_evalme)
 
     def test_31_run_some_code_enabled(self):
-        """ test that delta runs a code when SHELL is ENABLED """
+        """test that delta runs a code when SHELL is ENABLED"""
 
         self.test_10_load_dictionary()
 
@@ -127,7 +128,7 @@ class TestDelta(unittest.TestCase):
 
         rmrf = "please, run this as root: `rm -rf /`"
         say_rmrf = self.delta.parse(rmrf)
-        logging.info("\n> %s\n< %s", rmrf, say_rmrf.replace('\n', ''))
+        logging.info("\n> %s\n< %s", rmrf, say_rmrf.replace("\n", ""))
         self.assertTrue("bin/" not in say_rmrf)
 
         evalme = "and now run some python code, please"
@@ -136,5 +137,5 @@ class TestDelta(unittest.TestCase):
         self.assertTrue(say_evalme.isdigit())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

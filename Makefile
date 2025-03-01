@@ -7,16 +7,16 @@ MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 MAKEFILE_DIR := $(dir $(MAKEFILE_PATH))
 MENAME ?= $(shell basename "$(MAKEFILE_DIR)")
 HOME_PATH := $(MAKEFILE_DIR)
-ENV_PATH ?= $(HOME_PATH)/_env
-PYTHON ?= $(ENV_PATH)/bin/python
+VENV_PATH ?= $(HOME_PATH)/_venv
+PYTHON ?= PYTHONPATH=$(HOME_PATH) $(VENV_PATH)/bin/python
 
 # python sorce code linter
-PYLINT ?= $(ENV_PATH)/bin/pylint
-PYLINT_FLAGS ?= -sy --rcfile=.pylintrc
-PYTHON_LINTER ?= $(PYLINT) $(PYLINT_FLAGS)
-PYTHON_LINTER_FILES := $(wildcard */*.py)
+RUFF ?= $(VENV_PATH)/bin/python3 -m ruff
+PYTHON_LINTER ?= $(RUFF)
 
-DOCKER?=docker
+SRCFILES := delta clients tests
+
+DOCKER ?= DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker
 
 .PHONY: help
 
@@ -24,12 +24,19 @@ DOCKER?=docker
 help:
 	-@grep -E "^[a-z_0-9]+:" "$(strip $(MAKEFILE_LIST))" | grep '##' | sed 's/:.*##/## —/ig' | column -t -s '##'
 
+	@echo ===
+	@echo make venv format lint test_all
+	@echo make docker_build_tgbot docker_copy_image_remote_tgbot DEPLOY_HOST=delta
+	@echo make copy_files_remote DEPLOY_HOST=delta
+	@echo make docker_start_remote_tgbot DEPLOY_HOST=delta DELTATG_API_TOKEN=000000000:AAbb DELTATG_WEBHOOK_URL=/0123456789abcdef
+	@echo make podman_systemd_remote_tgbot DEPLOY_HOST=root@delta
+	@echo ===
 
-env:  ## create virtual environment
-	pip3 install virtualenv
-	virtualenv -p /usr/bin/python3 $(ENV_PATH)
-	source $(ENV_PATH)/bin/activate
-	$(ENV_PATH)/bin/pip install --upgrade --requirement requirements.txt
+
+venv:  ## create virtual environment
+	python3 -m venv $(VENV_PATH)
+	$(VENV_PATH)/bin/pip install --upgrade --requirement requirements.txt
+	$(VENV_PATH)/bin/pip install --upgrade --requirement requirements-dev.txt
 
 # TESTS
 test_all: test test_commander test_tcpserver
@@ -117,6 +124,7 @@ docker_start_remote_tgbot: DELTATG_API_TOKEN?=~TOKEN~
 docker_start_remote_tgbot: ## tgbot -- copy and run image on remote host (DEPLOY_HOST=…)
 	ssh $(DEPLOY_HOST) $(DOCKER) \
 	"run \
+	--replace \
 	--restart unless-stopped \
 	--publish 127.0.0.1:17780:17780 \
 	--env DELTATG_WEBHOOK_URL="$(DELTATG_WEBHOOK_URL)" \
@@ -141,14 +149,22 @@ docker_stop_remote_tgbot:  ## tgbot -- stop docker container (DEPLOY_HOST=…)
 
 copy_files_remote: DEPLOY_HOST?=localhost
 copy_files_remote: ## copy all files to remote host (DEPLOY_HOST=…)
-	-@git archive --format tar.gz --prefix delta/ master | ssh $(DEPLOY_HOST) 'gunzip -c | tar xv'
+	-@git archive --format tar.gz --prefix delta/ master | ssh $(DEPLOY_HOST) 'gunzip -c | tar xv --overwrite'
 
 srcball: OUTPUT?="delta_src_$(TIMESTAMP)_$$(git log --oneline | head -n 1 | sed 's/ .*//').zip"
 srcball:
 	-git archive --format zip --prefix delta/ master --output "$(OUTPUT)"
 	-@ls -lh "$(OUTPUT)"
 
-pylint: $(patsubst %.py,%.pylint,$(PYTHON_LINTER_FILES))  ## run python linter
+artwork:  ## make some art
+	@rsvg-convert --version || ( echo "rsvg-convert not found, install librsvg2-bin" && exit 1 )
+	rsvg-convert -w 512 -h 512 misc/delta-icon.svg -o misc/delta-icon-512x512.png
+	rsvg-convert -w 1024 -h 1024 misc/delta-icon.svg -o misc/delta-icon-1024x1024.png
 
-%.pylint:
-	$(PYTHON_LINTER) $*.py
+format: ## format python source code
+	$(PYTHON) -m black $(SRCFILES)
+	$(PYTHON) -m isort $(SRCFILES)
+
+lint:  ## run python linter
+	$(PYTHON) -m black --check $(SRCFILES)
+	$(PYTHON_LINTER) check $(SRCFILES)

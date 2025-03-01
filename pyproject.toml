@@ -1,0 +1,40 @@
+[default]
+name = "Delta Beta Telegram Bot"
+version = "0.1.0"
+description = "Delta Beta Telegram Bot"
+
+
+[tool.black]
+line-length = 110
+skip-string-normalization = false
+skip-magic-trailing-comma = false
+target-version = ["py310"]
+unstable = true
+enable-unstable-feature = ["string_processing", "hug_parens_with_braces_and_square_brackets", "wrap_long_dict_values_in_parens"]
+
+
+[tool.isort]
+line_length = 110
+profile = "black"
+
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = [
+    "E", # pycodestyle (error)
+    "F", # pyflakes
+    "B", # bugbear
+    "B9",
+    "C4", # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "I", # isort
+    "UP", # pyupgrade
+    "PIE", # flake8-pie
+    "PGH", # pygrep-hooks
+    "PYI", # flake8-pyi
+#    "RUF",
+]
+
+ignore = ["E501"]

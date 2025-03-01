@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.8-slim
 
 EXPOSE 17777
 
@@ -11,7 +11,7 @@ RUN pip install --upgrade pip && pip install --upgrade --requirement /delta/requ
 # run
 USER delta
 ENV HOME /delta
-ENV PYTHONPATH .:/delta/
+ENV PYTHONPATH /delta/
 WORKDIR /delta
 CMD ["python", "/delta/clients/delta_commander.py",\
     "data/dictionary-russian.xml",\
